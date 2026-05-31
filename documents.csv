@@ -1,0 +1,32 @@
+﻿unit_id,type,name,file
+13,instruction,دستورالعمل نحوه تشکیل پرونده ماشین آلات,document/TSA-MA-WI-01.pdf
+13,instruction,دستورالعمل مدیریت ماشین آلات,document/TSA-MA-WI-02.pdf
+13,instruction,آیین نامه داخلی نحوه راهبری ماشین آلات و تجهیزات شرکت در پروژه,document/TSA-MA-WI-03.pdf
+13,instruction,دستورالعمل اعزام کارشناس از طرف واحد ماشین آلات,document/TSA-MA-WI-04.pdf
+13,instruction,دستورالعمل گزارش بازدید و ارزیابی فصلی (سه ماهه) ماشین آلات,document/TSA-MA-WI-05.pdf
+13,form,گزارش روزانه کارکرد ماشین‌آلات,document/TSA-MA-FO-01.pdf
+13,form,فرم دستور کار سرویس سیستمی,document/TSA-MA-FO-02.pdf
+13,form,فرم درخواست تعمیرات (ماشین‌آلات),document/TSA-MA-FO-03.pdf
+13,form,فرم تحویل دستگاه به اپراتور,document/TSA-MA-FO-04.pdf
+13,form,فرم نقل و انتقال ماشین‌آلات,document/TSA-MA-FO-05.pdf
+13,form,گزارش بازدید و ارزیابی فنی ماشین آلات و تجهیزات,document/TSA-MA-FO-06.pdf
+13,form,درخواست ماشین‌آلات,document/TSA-MA-FO-07.pdf
+13,form,گزارش بازدید از پروژه,document/TSA-MA-FO-08.pdf
+13,form,گزارش روزانه,document/TSA-MA-FO-09.pdf
+13,form,گزارش بازدید و ارزیابی فصلی (سه ماهه) ماشین‌آلات,document/TSA-MA-FO-10.pdf
+4,instruction,دستورالعمل بیمه تکمیلی,document/TSA-AD-WI-01.pdf
+4,instruction,دستورالعمل گواهینامه شغلی,document/TSA-AD-WI-02.pdf
+4,instruction,دستورالعمل امورات اداری,document/TSA-AD-WI-03.pdf
+4,form,فرم اصلاح و تایید ساعت ورود و خروج فراموش شده پرسنل,document/TSA-AD-FO-01.pdf
+4,form,فرم مجوز حضور پرسنل بعد از تایم در دفتر مرکزی,document/TSA-AD-FO-02.pdf
+4,form,ثبت نام بیمه تکمیلی پرسنل دفتر مرکزی,document/TSA-AD-FO-03.pdf
+4,form,ثبت نام بیمه تکمیلی پرسنل پروژه‌ها,document/TSA-AD-FO-04.pdf
+4,form,برگ مأموریت,document/TSA-AD-FO-05.pdf
+4,form,برگ درخواست مرخصی (روزانه/ ساعتی),document/TSA-AD-FO-06.pdf
+4,form,چک لیست ایمنی و حراست (روز),document/TSA-AD-FO-07.pdf
+4,form,چک لیست ایمنی و حراست (شب),document/TSA-AD-FO-08.pdf
+4,form,فرم درخواست مراجعه کنندگان شرکت,document/TSA-AD-FO-09.pdf
+4,form,فرم ملاقات حضوری,document/TSA-AD-FO-10.pdf
+4,form,فرم ورود و خروج مراجعه‌کنندگان,document/TSA-AD-FO-11.pdf
+4,form,فرم آنالیز خسارت درمان,document/TSA-AD-FO-12.pdf
+4,form,فرم صدور گواهینامه شغلی,document/TSA-AD-FO-13.pdf

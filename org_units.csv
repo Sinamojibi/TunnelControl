@@ -1,0 +1,17 @@
+﻿id,name,icon
+1,واحد فنی و مهندسی,org/technical.jpg
+2,واحد برنامه‌ریزی و کنترل پروژه,org/control.jpg
+3,واحد ایمنی و محیط زیست,org/HSE.jpg
+4,واحد اداری,org/admin.jpg
+5,واحد منابع انسانی,org/resource.jpg
+6,واحد حسابرسی,org/Aduit.jpg
+7,واحد حقوقی,org/legal.jpg
+8,واحد مناقصات,org/Tender.jpg
+9,واحد مالی,org/Finance.jpg
+10,واحد فناوری اطلاعات,org/it.jpg
+11,واحد تامین و پشتیبانی,org/Supply.jpg
+12,واحد لجستیک,org/Logestic.jpg
+13,واحد ماشین‌آلات,org/Machinery.jpg
+14,واحد برق و مکانیک,org/Electric.jpg
+15,واحد ابنیه,org/Building.jpg
+16,واحد معدن,org/mine.jpg

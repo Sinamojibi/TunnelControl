@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خروج از پرتال | تونل سد آریانا</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'B Nazanin', 'Tahoma', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* پس‌زمینه متحرک */
+        .bg-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .bg-animation div {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            animation: float 6s infinite;
+        }
+        
+        .bg-animation div:nth-child(1) { top: 20%; left: 10%; width: 80px; height: 80px; animation-delay: 0s; }
+        .bg-animation div:nth-child(2) { top: 70%; left: 85%; width: 100px; height: 100px; animation-delay: 1s; }
+        .bg-animation div:nth-child(3) { top: 40%; left: 75%; width: 50px; height: 50px; animation-delay: 2s; }
+        .bg-animation div:nth-child(4) { top: 80%; left: 20%; width: 70px; height: 70px; animation-delay: 0.5s; }
+        .bg-animation div:nth-child(5) { top: 10%; left: 60%; width: 90px; height: 90px; animation-delay: 1.5s; }
+        .bg-animation div:nth-child(6) { top: 50%; left: 40%; width: 40px; height: 40px; animation-delay: 2.5s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            50% { transform: translateY(-30px) translateX(20px); opacity: 0.6; }
+        }
+        
+        /* کادر اصلی */
+        .logout-container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 50px 60px;
+            text-align: center;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.6s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* لوگو */
+        .logo-area {
+            margin-bottom: 30px;
+        }
+        
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #76a4ed, #94ade5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 40px;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* متن شرکت */
+        .company-name {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .company-sub {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        
+        /* انیمیشن لودینگ */
+        .loading-section {
+            margin: 40px 0;
+        }
+        
+        .progress-bar-container {
+            width: 300px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+        
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #3b82f6);
+            border-radius: 10px;
+            animation: loading 1s ease forwards;
+        }
+        
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        
+        /* دایره لودینگ */
+       /* دایره لودینگ */
+.circle-loader {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    display: block;
+}
+
+.circle-loader::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-top: 3px solid #10b981;
+    animation: spin 0.8s linear infinite;
+}
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* متن خروج */
+        .logout-text {
+            color: white;
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+        
+        .logout-text span {
+            color: #10b981;
+            font-weight: bold;
+        }
+        
+        /* متن تهیه شده */
+        .prepared-by {
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+        }
+        
+        /* لودینگ دات‌ها */
+        .dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+        
+        .dots span {
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite;
+        }
+        
+        .dots span:nth-child(2) { animation-delay: 0.2s; }
+        .dots span:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes bounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
+            30% { transform: translateY(-8px); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    <div class="logout-container">
+        <div class="logo-area">
+            <div class="logo-icon">
+                <img src="logo/logo.jpg" alt="لوگو شرکت تونل سد آریانا" style="width: 50px; height: 50px; object-fit: contain;">
+            </div>
+            <div class="company-name">شرکت تونل سد آریانا</div>
+            <div class="company-sub">Tunnel Sadd Ariana Company</div>
+        </div>
+        
+        <div class="loading-section">
+            <div class="circle-loader"></div>
+            <div class="progress-bar-container">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+        
+        <div class="logout-text">
+           در حال ذخیره‌سازی اطلاعات<span></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="prepared-by">
+            تهیه شده در واحد برنامه‌ریزی و کنترل پروژه شرکت تونل سد آریانا
+        </div>
+    </div>
+
+    <script>
+        // بعد از 1.5 ثانیه به صفحه لاگین برگرد (انیمیشن 1 ثانیه + 0.5 ثانیه مکث)
+        setTimeout(function() {
+            window.location.href = 'index.html';
+        }, 6000);
+        
+        // همچنین می‌توانی با دکمه escape هم برگردی (اختیاری)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>

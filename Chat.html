@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>چت آنلاین | پرتال آریانا</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'B Nazanin', 'Vazirmatn', 'Tahoma', 'Segoe UI', 'Arial', sans-serif !important;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* حالت شب */
+        body.dark-mode {
+            background: linear-gradient(135deg, #1e1e2f 0%, #2d2d44 100%);
+        }
+
+        body.dark-mode .chat-container {
+            background: rgba(30, 30, 47, 0.95);
+        }
+
+        body.dark-mode .chat-messages {
+            background: #1a1a2e;
+        }
+
+        body.dark-mode .chat-header {
+            background: #16213e;
+            border-bottom-color: #0f3460;
+        }
+
+        body.dark-mode .chat-input-area {
+            background: #16213e;
+            border-top-color: #0f3460;
+        }
+
+        body.dark-mode .chat-users {
+            background: #1a1a2e;
+            border-left-color: #0f3460;
+        }
+
+        body.dark-mode .chat-users h3 {
+            color: white;
+            border-bottom-color: #0f3460;
+        }
+
+        body.dark-mode .chat-user-item {
+            color: white;
+        }
+
+        body.dark-mode .chat-user-item:hover {
+            background: #334155;
+        }
+
+        body.dark-mode .chat-user-item.active {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        /* ===== مهم: سفید کردن متن گفتگوی گروهی در حالت شب ===== */
+        body.dark-mode #chatWithUser {
+            color: white !important;
+        }
+
+        body.dark-mode #groupChatBtn .chat-user-name {
+            color: white !important;
+        }
+
+        body.dark-mode .chat-user-name {
+            color: white !important;
+        }
+
+        body.dark-mode .online-count {
+            background: #10b98120;
+            color: #10b981;
+        }
+
+        body.dark-mode .message.other {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .chat-input-area input {
+            background: #1e293b;
+            border-color: #334155;
+            color: white;
+        }
+
+        body.dark-mode .chat-input-area input:focus {
+            border-color: #3b82f6;
+            background: #1e293b;
+        }
+
+        body.dark-mode .emoji-btn {
+            background: #1e293b;
+            color: white;
+        }
+
+        body.dark-mode .emoji-btn:hover {
+            background: #5989cb;
+        }
+
+        body.dark-mode .sticker-panel {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        body.dark-mode .sticker-item:hover {
+            background: #334155;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            height: 85vh;
+        }
+
+        .chat-users {
+            width: 320px;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            border-left: 1px solid rgba(0,0,0,0.05);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .chat-users h3 {
+            margin-bottom: 20px;
+            color: #1e40af;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .online-count {
+            background: #10b98120;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: #10b981;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .chat-user-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 6px;
+        }
+
+        .chat-user-item:hover {
+            background: #dbeafe;
+            transform: translateX(-5px);
+        }
+
+        .chat-user-item.active {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        .chat-user-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 0 2px white;
+        }
+
+        .chat-user-status.offline {
+            background: #94a3b8;
+        }
+
+        .chat-user-name {
+            flex: 1;
+        }
+
+        .chat-messages-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+
+        .chat-header {
+            padding: 20px 25px;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chatWithUser {
+            font-size: 1.2rem;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #f8fafc;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 10px;
+        }
+
+        .message {
+            max-width: 65%;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            animation: fadeInUp 0.2s ease;
+        }
+
+        .message.sticker {
+            padding: 8px 12px;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.own {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            align-self: flex-end;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.other {
+            background: white;
+            color: #1e293b;
+            align-self: flex-start;
+            border-bottom-right-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .message.system {
+            background: #fef3c7;
+            color: #d97706;
+            text-align: center;
+            align-self: center;
+            font-size: 0.8rem;
+            max-width: 80%;
+            border-radius: 50px;
+        }
+
+        .message-sender {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .message-time {
+            font-size: 0.65rem;
+            opacity: 0.6;
+            margin-top: 5px;
+            text-align: left;
+        }
+
+        .chat-input-area {
+            display: flex;
+            gap: 12px;
+            padding: 18px 25px;
+            border-top: 1px solid #e2e8f0;
+            background: white;
+            position: relative;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #f8fafc;
+        }
+
+        .chat-input-area input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background: white;
+        }
+
+        .chat-input-area button {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .emoji-btn {
+            background: #f1f5f9;
+            border: none;
+            width: 50px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.2s;
+        }
+
+        .emoji-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .sticker-panel {
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            padding: 15px;
+            width: 350px;
+            z-index: 200;
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .sticker-panel.active {
+            display: grid;
+        }
+
+        .sticker-item {
+            font-size: 2rem;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: all 0.2s;
+        }
+
+        .sticker-item:hover {
+            background: #f1f5f9;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .chat-container {
+                flex-direction: column;
+                height: 95vh;
+            }
+            .chat-users {
+                width: 100%;
+                max-height: 200px;
+            }
+            .message {
+                max-width: 85%;
+            }
+            .sticker-panel {
+                width: 280px;
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<button class="theme-toggle" onclick="toggleTheme()">
+    <i class="fas fa-moon"></i>
+</button>
+
+<div class="chat-container">
+    <div class="chat-users">
+        <h3><i class="fas fa-users"></i> کاربران</h3>
+        <div class="online-count" id="onlineCount"></div>
+        <div id="onlineUsersList"></div>
+    </div>
+    <div class="chat-messages-area">
+        <div class="chat-header">
+            <span id="chatWithUser"><i class="fas fa-comments"></i> گفتگوی گروهی</span>
+            <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-right"></i> بازگشت</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message system"><i class="fas fa-plug"></i> به چت متصل شدید...</div>
+        </div>
+        <div class="chat-input-area">
+            <button class="emoji-btn" onclick="toggleStickerPanel()">😊</button>
+            <input type="text" id="chatInput" placeholder="پیام خود را بنویسید...">
+            <button id="sendChatBtn"><i class="fas fa-paper-plane"></i> ارسال</button>
+            
+            <div class="sticker-panel" id="stickerPanel">
+                <div class="sticker-item" onclick="sendSticker('😂')">😂</div>
+                <div class="sticker-item" onclick="sendSticker('🤣')">🤣</div>
+                <div class="sticker-item" onclick="sendSticker('😍')">😍</div>
+                <div class="sticker-item" onclick="sendSticker('🥰')">🥰</div>
+                <div class="sticker-item" onclick="sendSticker('😎')">😎</div>
+                <div class="sticker-item" onclick="sendSticker('🤔')">🤔</div>
+                <div class="sticker-item" onclick="sendSticker('😢')">😢</div>
+                <div class="sticker-item" onclick="sendSticker('😡')">😡</div>
+                <div class="sticker-item" onclick="sendSticker('👍')">👍</div>
+                <div class="sticker-item" onclick="sendSticker('👎')">👎</div>
+                <div class="sticker-item" onclick="sendSticker('❤️')">❤️</div>
+                <div class="sticker-item" onclick="sendSticker('💔')">💔</div>
+                <div class="sticker-item" onclick="sendSticker('🔥')">🔥</div>
+                <div class="sticker-item" onclick="sendSticker('🎉')">🎉</div>
+                <div class="sticker-item" onclick="sendSticker('🎂')">🎂</div>
+                <div class="sticker-item" onclick="sendSticker('🏆')">🏆</div>
+                <div class="sticker-item" onclick="sendSticker('⭐')">⭐</div>
+                <div class="sticker-item" onclick="sendSticker('💯')">💯</div>
+                <div class="sticker-item" onclick="sendSticker('🙏')">🙏</div>
+                <div class="sticker-item" onclick="sendSticker('💪')">💪</div>
+                <div class="sticker-item" onclick="sendSticker('👋')">👋</div>
+                <div class="sticker-item" onclick="sendSticker('🤝')">🤝</div>
+                <div class="sticker-item" onclick="sendSticker('💀')">💀</div>
+                <div class="sticker-item" onclick="sendSticker('👻')">👻</div>
+                <div class="sticker-item" onclick="sendSticker('🐱')">🐱</div>
+                <div class="sticker-item" onclick="sendSticker('🐶')">🐶</div>
+                <div class="sticker-item" onclick="sendSticker('🦊')">🦊</div>
+                <div class="sticker-item" onclick="sendSticker('🐼')">🐼</div>
+                <div class="sticker-item" onclick="sendSticker('🍕')">🍕</div>
+                <div class="sticker-item" onclick="sendSticker('🍔')">🍔</div>
+                <div class="sticker-item" onclick="sendSticker('☕')">☕</div>
+                <div class="sticker-item" onclick="sendSticker('🍺')">🍺</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyA3DmRUETaoyW36wqajTEVc5atgMngSzYA",
+        authDomain: "ariana-c1faa.firebaseapp.com",
+        databaseURL: "https://ariana-c1faa-default-rtdb.firebaseio.com",
+        projectId: "ariana-c1faa",
+        storageBucket: "ariana-c1faa.firebasestorage.app",
+        messagingSenderId: "347957379524",
+        appId: "1:347957379524:web:0de87849b43f9b1a212491"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    
+    let currentUsername = '';
+    let currentChatUser = null;
+    let allUsers = [];
+    let onlineUsers = [];
+    let currentChatRef = null;
+    let isDarkMode = false;
+    
+    async function loadUsersFromCSV() {
+        try {
+            const response = await fetch('users.csv');
+            if (!response.ok) throw new Error();
+            const text = await response.text();
+            let cleanText = text;
+            if (cleanText.charCodeAt(0) === 0xFEFF) cleanText = cleanText.substring(1);
+            const lines = cleanText.trim().split('\n');
+            const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+            const usernameIndex = headers.findIndex(h => h === 'username');
+            allUsers = [];
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',').map(v => v.trim());
+                if (values[usernameIndex]) allUsers.push(values[usernameIndex]);
+            }
+        } catch (error) {
+            allUsers = ["سینا مجیبی پور", "احمد رضا سلمانی"];
+        }
+    }
+    
+    function updateOnlineStatus(isOnline) {
+        const userStatusRef = db.ref(`online_users/${currentUsername}`);
+        if (isOnline) {
+            userStatusRef.set({ online: true, lastSeen: Date.now() });
+            window.addEventListener('beforeunload', () => {
+                userStatusRef.set({ online: false, lastSeen: Date.now() });
+            });
+        }
+    }
+    
+    function listenToOnlineUsers() {
+        db.ref('online_users').on('value', (snapshot) => {
+            const users = snapshot.val() || {};
+            onlineUsers = [];
+            for (const [username, data] of Object.entries(users)) {
+                if (data.online && username !== currentUsername) onlineUsers.push(username);
+            }
+            displayOnlineUsers();
+        });
+    }
+    
+    function displayOnlineUsers() {
+        const container = document.getElementById('onlineUsersList');
+        if (!container) return;
+        const onlineSet = new Set(onlineUsers);
+        const offlineUsers = allUsers.filter(u => u !== currentUsername && !onlineSet.has(u));
+        container.innerHTML = `<div class="chat-user-item" onclick="selectChatUser(null)" id="groupChatBtn"><div class="chat-user-status" style="background:#8b5cf6;"></div><span class="chat-user-name"><i class="fas fa-globe"></i> گفتگوی گروهی</span></div>`;
+        onlineUsers.forEach(user => {
+            container.innerHTML += `<div class="chat-user-item" data-user="${user}" onclick="selectChatUser('${user}')"><div class="chat-user-status"></div><span class="chat-user-name"><i class="fas fa-user"></i> ${user} <span style="font-size:0.6rem;">(آنلاین)</span></span></div>`;
+        });
+        offlineUsers.forEach(user => {
+            container.innerHTML += `<div class="chat-user-item" data-user="${user}" onclick="selectChatUser('${user}')"><div class="chat-user-status offline"></div><span class="chat-user-name"><i class="fas fa-user"></i> ${user} <span style="font-size:0.6rem;">(آفلاین)</span></span></div>`;
+        });
+        document.getElementById('onlineCount').innerHTML = `<i class="fas fa-circle" style="font-size: 8px; color: #10b981;"></i> ${onlineUsers.length} آنلاین | ${allUsers.length} کاربر`;
+        if (currentChatUser === null) {
+            document.getElementById('groupChatBtn')?.classList.add('active');
+        } else {
+            const selected = document.querySelector(`.chat-user-item[data-user="${currentChatUser}"]`);
+            if (selected) selected.classList.add('active');
+        }
+    }
+    
+    function selectChatUser(username) {
+        currentChatUser = username;
+        document.getElementById('chatWithUser').innerHTML = username ? `<i class="fas fa-user"></i> چت با: ${username}` : `<i class="fas fa-globe"></i> گفتگوی گروهی`;
+        document.querySelectorAll('.chat-user-item').forEach(item => item.classList.remove('active'));
+        if (username) {
+            const selected = document.querySelector(`.chat-user-item[data-user="${username}"]`);
+            if (selected) selected.classList.add('active');
+        } else {
+            document.getElementById('groupChatBtn')?.classList.add('active');
+        }
+        document.getElementById('chatMessages').innerHTML = '<div class="message system"><i class="fas fa-comment-dots"></i> گفتگو را شروع کنید...</div>';
+        listenToMessages();
+    }
+    
+    function listenToMessages() {
+        if (currentChatRef) currentChatRef.off();
+        const chatId = currentChatUser ? `private_${[currentUsername, currentChatUser].sort().join('_')}` : 'group';
+        currentChatRef = db.ref(`chats/${chatId}`);
+        currentChatRef.on('child_added', (snapshot) => {
+            const msg = snapshot.val();
+            if (msg && msg.sender !== currentUsername) {
+                addMessageToChat(msg.sender, msg.text, msg.time, false, msg.isSticker);
+            }
+        });
+    }
+    
+    function addMessageToChat(sender, text, time, isOwn, isSticker = false) {
+        const container = document.getElementById('chatMessages');
+        if (container.children.length === 1 && container.children[0].classList?.contains('system') && 
+            container.children[0].innerText.includes('شروع کنید')) {
+            container.innerHTML = '';
+        }
+        const stickerClass = isSticker ? 'sticker' : '';
+        container.innerHTML += `
+            <div class="message ${isOwn ? 'own' : 'other'} ${stickerClass}">
+                <div class="message-sender"><i class="fas ${isOwn ? 'fa-user-check' : 'fa-user'}"></i> ${sender}</div>
+                <div>${text}</div>
+                <div class="message-time">${time}</div>
+            </div>
+        `;
+        container.scrollTop = container.scrollHeight;
+    }
+    
+    function sendMessage(text, isSticker = false) {
+        if (!text) return;
+        const message = {
+            sender: currentUsername,
+            text: text,
+            time: new Date().toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' }),
+            timestamp: Date.now(),
+            isSticker: isSticker
+        };
+        addMessageToChat(currentUsername, text, message.time, true, isSticker);
+        const chatId = currentChatUser ? `private_${[currentUsername, currentChatUser].sort().join('_')}` : 'group';
+        db.ref(`chats/${chatId}`).push(message);
+    }
+    
+    function sendSticker(sticker) {
+        sendMessage(sticker, true);
+        closeStickerPanel();
+    }
+    
+    function toggleStickerPanel() {
+        const panel = document.getElementById('stickerPanel');
+        panel.classList.toggle('active');
+    }
+    
+    function closeStickerPanel() {
+        document.getElementById('stickerPanel').classList.remove('active');
+    }
+    
+    function goBack() {
+        window.location.href = 'dashboard.html';
+    }
+    
+    function toggleTheme() {
+        isDarkMode = !isDarkMode;
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            document.querySelector('.theme-toggle i').className = "fas fa-sun";
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.querySelector('.theme-toggle i').className = "fas fa-moon";
+        }
+    }
+    
+    async function init() {
+        currentUsername = localStorage.getItem('username') || '';
+        if (localStorage.getItem('loggedIn') !== 'true') window.location.href = 'index.html';
+        await loadUsersFromCSV();
+        updateOnlineStatus(true);
+        listenToOnlineUsers();
+        selectChatUser(null);
+    }
+    
+    init();
+    
+    document.getElementById('sendChatBtn')?.addEventListener('click', () => {
+        const input = document.getElementById('chatInput');
+        if (input.value.trim()) {
+            sendMessage(input.value.trim(), false);
+            input.value = '';
+        }
+    });
+    document.getElementById('chatInput')?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const input = document.getElementById('chatInput');
+            if (input.value.trim()) {
+                sendMessage(input.value.trim(), false);
+                input.value = '';
+            }
+        }
+    });
+    
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.emoji-btn') && !e.target.closest('.sticker-panel')) {
+            closeStickerPanel();
+        }
+    });
+</script>
+</body>
+</html>

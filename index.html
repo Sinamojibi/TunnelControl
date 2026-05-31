@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پرتال آریانا | ورود</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+</head>
+
+
+
+
+
+<style>
+
+body {
+    font-family: 'B Nazanin', 'Tahoma', 'Segoe UI', 'Arial', sans-serif !important;
+}
+</style>
+
+
+
+
+
+<body>
+    
+    <div class="login-wrapper">
+        <!-- تصویر پس‌زمینه لنداسکیپ -->
+        <div class="background-image"></div>
+
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo-container">
+                    <img src="LOGO.jpg" alt="لوگو" class="logo-img">
+                    <div class="logo-text">پرتال شرکت تونل سد آریانا</div>
+                </div>
+                <p>سامانه یکپارچه سازمانی</p>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>👤 نام کاربری</label>
+                    <input type="text" id="username" placeholder="نام کاربری خود را وارد کنید" required>
+                </div>
+                <div class="input-group">
+                    <label>🔒 رمز عبور</label>
+                    <input type="password" id="password" placeholder="رمز عبور خود را وارد کنید" required>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span></span>ورود به شرکت تونل سد اریانا<span></span>
+                </button>
+                <div id="errorMsg" class="error"></div>
+            </form>
+            <div class="login-footer">
+                <span>© 1405 پرتال شرکت تونل سد آریانا | تمامی حقوق محفوظ است</span>
+            </div>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

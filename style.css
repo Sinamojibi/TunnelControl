@@ -1,0 +1,757 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #8392d6 0%, #031a9a 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ========== صفحه لاگین ========== */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 450px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-header {
+    background: linear-gradient(135deg, #7ca1ef 0%, #566fb6 100%) !important;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.logo {
+    font-size: auto;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+
+
+.login-header p {
+    opacity: 0.9;
+    font-size: 10px;
+}
+
+.login-card form {
+    padding: 40px;
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'Vazirmatn', sans-serif;
+    transition: all 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #230db1;
+    box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+}
+
+.login-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #7ca1ef 0%, #566fb6 100%) !important;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+}
+
+.login-footer {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    color: #666;
+    font-size: 12px;
+}
+
+.error {
+    color: #e74c3c;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* ========== داشبورد ========== */
+.sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(180deg, #2c3e50 0%, #1a252f 100%);
+    color: white;
+    transition: all 0.3s;
+    z-index: 1000;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-header h2 {
+    font-size: 22px;
+}
+
+.sidebar-nav {
+    padding: 20px 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 25px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.nav-item.active {
+    background: rgba(102, 126, 234, 0.3);
+    border-right: 4px solid #667eea;
+    color: white;
+}
+
+.nav-item span {
+    font-size: 20px;
+}
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+}
+
+.logout-btn {
+    width: 100%;
+    background: rgba(231, 76, 60, 0.8);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background: #e74c3c;
+}
+
+/* محتوای اصلی */
+.main-content {
+    margin-right: 280px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+.top-bar {
+    background: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.menu-toggle {
+    display: none;
+    background: #764ba2;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.user-info {
+    font-size: 14px;
+    color: #555;
+}
+
+.content-wrapper {
+    padding: 30px;
+}
+
+.content-section {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.content-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+    margin-bottom: 30px;
+}
+
+.section-header h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.section-header p {
+    color: #777;
+}
+
+/* کارت‌های واحدهای سازمانی */
+.org-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.org-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s;
+    border: 1px solid #eee;
+}
+
+.org-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+org-card h3 {
+    color: #764ba2;
+    font-size: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.org-card p {
+    margin: 12px 0;
+}
+
+.org-card a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.org-card a:hover {
+    text-decoration: underline;
+}
+
+/* جدول کارکنان */
+.search-box {
+    margin-bottom: 25px;
+}
+
+.search-box input {
+    width: 100%;
+    max-width: 350px;
+    padding: 12px 18px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 14px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.employees-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.employees-table th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px;
+    text-align: right;
+    font-weight: 500;
+}
+
+.employees-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #555;
+}
+
+.employees-table tr:hover {
+    background: #f8f9fa;
+}
+
+/* لینک‌های مفید */
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.quick-link-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+}
+
+.quick-link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+.quick-link-card span {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.quick-link-card h4 {
+    font-size: 18px;
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+    .sidebar {
+        right: -280px;
+    }
+
+    .sidebar.open {
+        right: 0;
+    }
+
+    .main-content {
+        margin-right: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .content-wrapper {
+        padding: 20px;
+    }
+
+    .section-header h2 {
+        font-size: 22px;
+    }
+}
+/* ========== صفحه لاگین با طراحی جدید ========== */
+.login-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* تصویر پس‌زمینه لنداسکیپ */
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('Company-Building.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -2;
+}
+
+.background-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: -1;
+}
+
+/* کارت لاگین شیشه‌ای */
+.login-card {
+    background: rgba(240, 249, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 32px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 480px;
+    overflow: hidden;
+    animation: fadeInUp 0.7s ease;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* لوگو و عنوان */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.logo-img {
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    animation: logoFloat 3s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #14015c 0%, #2c0763 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.login-header {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+.login-header p {
+    opacity: 0.9;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/* فرم */
+.login-card form {
+    padding: 40px 35px;
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e8e8e8;
+    border-radius: 14px;
+    font-size: 15px;
+    font-family: 'Vazirmatn', sans-serif;
+    transition: all 0.3s;
+    background: #f9f9f9;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #764ba2;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.1);
+}
+
+.input-group input::placeholder {
+    color: #bbb;
+    font-weight: 400;
+}
+
+/* دکمه ورود */
+.login-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Vazirmatn', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(7, 1, 12, 0.4);
+}
+
+.login-btn span {
+    font-size: 18px;
+}
+
+/* فوتر */
+.login-footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(248, 249, 250, 0.9);
+    color: #888;
+    font-size: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.error {
+    color: #e74c3c;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* انیمیشن ورود */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+    .login-card {
+        margin: 20px;
+        max-width: 90%;
+    }
+    
+    .logo-text {
+        font-size: 26px;
+    }
+    
+    .logo-img {
+        width: 110px;
+        height: 50px;
+    }
+    
+    .login-card form {
+        padding: 30px 25px;
+    }
+}
+
+
+
+
+
+/* مودال */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 30px;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #666;
+}
+
+.modal-close:hover {
+    color: #ef4444;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.modal-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Tahoma', 'Segoe UI', 'Arial', sans-serif;
+}
+
+.status-btn {
+    background: #3b82f6;
+    color: white;
+}
+
+.status-btn:hover {
+    background: #2563eb;
+    transform: scale(1.05);
+}
+
+.adjust-btn {
+    background: #10b981;
+    color: white;
+}
+
+.adjust-btn:hover {
+    background: #059669;
+    transform: scale(1.05);
+}
+
+.modal-data {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background: #f1f5f9;
+    padding: 12px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.data-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.9rem;
+}
+
+.percent-bar {
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 20px;
+}
+
+.percent-fill {
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.75rem;
+}

@@ -1,0 +1,4561 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پرتال سازمانی آریانا</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tahoma', 'Segoe UI', 'Arial', sans-serif !important;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f3ff 100%);
+            color: #1e293b;
+        }
+
+        .sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 290px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.08);
+            padding: 30px 20px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #759ee0, #ccd0d7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 10px rgba(59,130,246,0.3);
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e40af;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            margin: 8px 0;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .nav-item:hover {
+            background: #dbeafe;
+            transform: translateX(-5px);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+            border: none;
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+        }
+
+        .main-content {
+            margin-right: 280px;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        .top-bar {
+            background: white;
+            border-radius: 25px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+    .quick-link-card img {
+    width: 100px !important;
+    height: 100px !important;
+    object-fit: contain;
+}
+
+.quick-link-card span {
+    font-size: 3rem !important;
+}
+
+
+
+
+        .welcome-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: 'B Nazanin', 'Tahoma', 'Segoe UI', 'Arial', sans-serif !important;
+            transition: all 0.2s;
+            
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+            transform: scale(1.02);
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .org-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .org-card {
+            background: white;
+            border-radius: 60px 60px 60px 20px;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #e0f2fe;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            min-height: 450px !important;
+        }
+
+        .org-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(37,99,235,0.15);
+            border-color: #3b82f6;
+        }
+
+        .org-card.active {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border: 2px solid #3b82f6;
+        }
+
+        .org-card h3 {
+            color: #1e3a8a;
+            margin: 15px 0 10px;
+            font-size: 1.3rem !important;
+        }
+
+        .sub-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .sub-card {
+            background: white;
+            border-radius: 30px;
+            padding: 25px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        }
+
+        .sub-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            color: #1e40af;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #bfdbfe;
+        }
+
+        .items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .item-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 18px;
+            background: #f8fafc;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #1e293b;
+            transition: all 0.2s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .item-link:hover {
+            background: #dbeafe;
+            transform: translateX(-5px);
+            border-color: #3b82f6;
+        }
+
+        .employees-table-wrapper {
+            background: white;
+            border-radius: 40px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f1f5f9;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .search-box {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .search-box input {
+            padding: 12px 20px;
+            width: 300px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.2s;
+            font-family: 'B Nazanin', 'Tahoma', 'Segoe UI', 'Arial', sans-serif !important;
+    font-size: 14px !important;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .quick-link-card {
+            background: white;
+            border-radius: 80px;
+            padding: 25px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #1e293b;
+            transition: all 0.3s;
+            border: 1px solid #e0f2fe;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(59,130,246,0.2);
+            border-color: #3b82f6;
+            background: #f0f9ff;
+        }
+
+        .quick-link-card span:first-child {
+            font-size: 2.5rem;
+        }
+
+        .quick-link-card h4 {
+            font-size: 1rem;
+            color: #1e3a8a;
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 50px;
+            z-index: 1100;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* استایل تصاویر پروژه */
+.project-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.project-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* اگر تصویر وجود نداشت یا لود نشد */
+.project-image-error {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+ @media (max-width: 768px) {
+    .sidebar {
+        right: -280px;
+    }
+    .sidebar.open {
+        right: 0;
+    }
+    .main-content {
+        margin-right: 0;
+        padding: 20px;
+    }
+    .menu-toggle {
+        display: block;
+        bottom: 20px;
+        left: 20px;
+    }
+    .sub-sections {
+        grid-template-columns: 1fr;
+    }
+    
+    /* تنظیمات top-bar برای موبایل */
+    .top-bar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
+    }
+    
+    .datetime-area {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    #persianDate, #currentTime {
+        font-size: 0.7rem !important;
+        padding: 4px 8px;
+        margin-left: 0 !important;
+    }
+    
+    .logout-btn {
+        padding: 5px 12px;
+        font-size: 0.75rem;
+    }
+    
+    .welcome-text {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+    
+    .status-stats {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+        margin-bottom: 25px !important;
+    }
+    
+    .stat-card {
+        padding: 15px 12px !important;
+        min-height: auto !important;
+    }
+    
+    .stat-card div:first-child {
+        font-size: 2.5rem !important;
+        margin-bottom: 5px !important;
+    }
+    
+    .stat-card div:nth-child(2) {
+        font-size: 1.6rem !important;
+        margin: 5px 0 10px 0 !important;
+        text-decoration: underline !important;
+    }
+    
+    .stat-card div:last-child {
+        font-size: 0.85rem !important;
+        word-break: break-word !important;
+        white-space: normal !important;
+        line-height: 1.3 !important;
+    }
+}
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal-close:hover {
+            color: #ef4444;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .modal-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'B Nazanin', 'Tahoma', 'Segoe UI', 'Arial', sans-serif !important;
+    font-size: 17px !important;
+        }
+
+        .status-btn {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .status-btn:hover {
+            background: #2563eb;
+            transform: scale(1.05);
+        }
+
+        .adjust-btn {
+            background: #10b981;
+            color: white;
+        }
+
+        .adjust-btn:hover {
+            background: #059669;
+            transform: scale(1.05);
+        }
+
+        .modal-data {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            background: #f1f5f9;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .data-table td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+        }
+
+        .percent-bar {
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 20px;
+            margin: 10px 0;
+        }
+
+        .percent-fill {
+            background: linear-gradient(90deg, #3b82f6, #2563eb);
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+        }
+
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 50px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            background: #dbeafe;
+            transform: translateY(-2px);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+        }
+
+    /* استایل پایه وضعیت */
+.status-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+/* افکت شیشه‌ای روی همه وضعیت‌ها */
+.status-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    z-index: 0;
+}
+
+.status-badge:hover::before {
+    transform: translateX(0);
+}
+
+.status-badge span {
+    position: relative;
+    z-index: 1;
+}
+
+/* جاری - آبی شیشه‌ای */
+.status-current { 
+    background: linear-gradient(135deg, rgba(59,130,246,0.85), rgba(78,111,182,0.75));
+    color: white;
+    box-shadow: 0 4px 15px rgba(59,130,246,0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* اتمام - سبز شیشه‌ای */
+.status-completed { 
+    background: linear-gradient(135deg, rgba(16,185,129,0.85), rgba(39,175,132,0.75));
+    color: white;
+    box-shadow: 0 4px 15px rgba(16,185,129,0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* دوره گارانتی - نارنجی شیشه‌ای */
+.status-warranty { 
+    background: linear-gradient(135deg, rgba(211,153,53,0.85), rgba(217,119,6,0.75));
+    color: white;
+    box-shadow: 0 4px 15px rgba(245,158,11,0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* در حال ابلاغ - بنفش شیشه‌ای */
+.status-tender { 
+    background: linear-gradient(135deg, rgba(139,92,246,0.85), rgba(147,108,214,0.75));
+    color: white;
+    box-shadow: 0 4px 15px rgba(139,92,246,0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* افکت hover */
+.status-badge:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.08);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+
+.data-table td:first-child {
+    white-space: normal !important;
+    word-break: break-word !important;
+    line-height: 1.4 !important;
+    min-width: 200px;
+}
+
+.stat-card {
+    background: white !important;
+    border: 2px solid #1e40af !important;
+    border-radius: 20px;
+    padding: 25px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.stat-card div:first-child {
+    font-size: 5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.stat-card div:nth-child(2) {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #1e40af;
+    margin: 0px 0;
+    text-decoration: underline;
+    margin-bottom: 20px;
+   
+}
+
+.stat-card div:last-child {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #1e40af;
+}
+
+/* فقط برای زبان فارسی فونت B Nazanin استفاده شود */
+body[lang="fa"], body[lang="fa"] * {
+    font-family: 'B Nazanin', 'Tahoma', 'Segoe UI', 'Arial', sans-serif !important;
+}
+
+/* تنظیمات کارت‌های آمار در موبایل */
+@media (max-width: 768px) {
+    .status-stats {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+        margin-bottom: 25px !important;
+    }
+    
+    .stat-card {
+        padding: 15px 12px !important;
+        min-height: auto !important;
+    }
+    
+    .stat-card div:first-child {
+        font-size: 2.5rem !important;
+        margin-bottom: 5px !important;
+    }
+    
+    .stat-card div:nth-child(2) {
+        font-size: 1.6rem !important;
+        margin: 5px 0 10px 0 !important;
+        text-decoration: underline !important;
+    }
+    
+    .stat-card div:last-child {
+        font-size: 0.85rem !important;
+        word-break: break-word !important;
+        white-space: normal !important;
+        line-height: 1.3 !important;
+    }
+}
+
+/* ثابت نگه داشتن عرض جدول در همه حالت‌ها */
+/* ثابت نگه داشتن عرض جدول در همه حالت‌ها */
+.data-table {
+    width: 100%;
+    min-width: 1200px;
+    table-layout: fixed;
+}
+
+.employees-table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.data-table td:nth-child(1),  /* نام پروژه */
+.data-table td:nth-child(2),  /* وضعیت */
+.data-table td:nth-child(3),  /* موقعیت */
+.data-table td:nth-child(4),  /* محل پروژه */
+.data-table td:nth-child(5) { /* نام کارفرما */
+    white-space: normal !important;
+    word-break: break-word !important;
+    line-height: 1.4 !important;
+}
+
+/* ستون‌هایی که در یک خط می‌مانند */
+.data-table td:nth-child(6),  /* مبلغ قرارداد */
+.data-table td:nth-child(7),  /* نوع ارز */
+.data-table td:nth-child(8),  /* تاریخ شروع */
+.data-table td:nth-child(9) { /* تاریخ پایان */
+    white-space: nowrap !important;
+}
+
+/* عرض ثابت برای هر ستون به صورت درصد */
+.data-table th:nth-child(1) { width: 19%; }
+.data-table th:nth-child(2) { width: 8%; }
+.data-table th:nth-child(3) { width: 8%; }
+.data-table th:nth-child(4) { width: 12%; }
+.data-table th:nth-child(5) { width: 15%; }
+.data-table th:nth-child(6) { width: 12%; }
+.data-table th:nth-child(7) { width: 8%; }
+.data-table th:nth-child(8) { width: 9%; }
+.data-table th:nth-child(9) { width: 10%; }
+
+
+
+/* تنظیمات برای صفحه‌های خیلی کوچک */
+@media (max-width: 480px) {
+    .status-stats {
+        gap: 10px !important;
+    }
+    
+    .stat-card {
+        padding: 12px 8px !important;
+    }
+    
+    .stat-card div:first-child {
+        font-size: 2rem !important;
+    }
+    
+    .stat-card div:nth-child(2) {
+        font-size: 1.3rem !important;
+    }
+    
+    .stat-card div:last-child {
+        font-size: 0.7rem !important;
+    }
+
+
+
+
+
+/* تنظیمات فونت برای زبان فارسی */
+body[lang="fa"] .data-table,
+body[lang="fa"] .data-table th,
+body[lang="fa"] .data-table td {
+    font-family: 'B Nazanin', 'Tahoma', 'Segoe UI', 'Arial', sans-serif !important;
+}
+
+body[lang="fa"] .data-table th {
+    font-size: 15px !important;
+}
+
+body[lang="fa"] .data-table td {
+    font-size: 14px !important;
+}
+
+
+body[lang="en"] .data-table td,
+body[lang="ru"] .data-table td {
+    font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+}
+
+body[lang="fa"] .data-table td {
+    font-size: 18px !important;
+}
+
+body[lang="fa"] .data-table th {
+    font-size: 18px !important;
+}
+
+body[lang="fa"] .status-badge {
+    font-size: 15px !important;
+    padding: 8px 16px !important;
+}
+
+body[lang="fa"] .data-table {
+    font-size: 18px !important;
+}
+
+
+ * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    /* حذف فونت انگلیسی از body */
+    body {
+        font-family: 'B Nazanin', 'Tahoma', 'Segoe UI', 'Arial', sans-serif !important;
+    }
+
+    /* فقط فونت جدول برای انگلیسی و روسی تغییر کند */
+    body[lang="en"] .data-table,
+    body[lang="en"] .data-table th,
+    body[lang="en"] .data-table td,
+    body[lang="ru"] .data-table,
+    body[lang="ru"] .data-table th,
+    body[lang="ru"] .data-table td {
+        font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+    }
+
+    /* ساعت و تاریخ همیشه فارسی بماند */
+    #persianDate, #currentTime {
+        font-family: 'B Nazanin', 'Tahoma', sans-serif !important;
+        font-weight: bold;
+        background: #f0f9ff;
+        padding: 10px 15px;
+        border-radius: 50px;
+        border: 1px solid #e0f2fe;
+        font-size: 1rem !important;
+    }
+
+    /* منوها همیشه فارسی */
+    .nav-item span, .logo-text, .welcome-text, .logout-btn, .lang-btn, .section-title span {
+        font-family: 'B Nazanin', 'Tahoma', sans-serif !important;
+    }
+
+    /* استات کارت‌ها همیشه فارسی */
+    .stat-card div:last-child {
+        font-family: 'B Nazanin', 'Tahoma', sans-serif !important;
+    }
+
+
+
+/* عدد کارت‌های آمار با فونت انگلیسی */
+.stat-card div:nth-child(2) {
+    font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif !important;
+}
+
+/* فقط در زبان فارسی عدد کارت‌ها با فونت فارسی باشد */
+body[lang="fa"] .stat-card div:nth-child(2) {
+    font-family: 'B Nazanin', 'Tahoma', sans-serif !important;
+}
+
+
+
+/* حالت روز (پیش‌فرض) */
+:root {
+    --bg-gradient-start: #f0f9ff;
+    --bg-gradient-end: #e6f3ff;
+    --card-bg: white;
+    --text-color: #000000;
+    --sidebar-bg: white;
+    --nav-bg: #f8fafc;
+    --border-color: #e2e8f0;
+}
+
+/* حالت شب */
+body.dark-mode {
+    --bg-gradient-start: #0f172a;
+    --bg-gradient-end: #1e293b;
+    --card-bg: #98a1b1;
+    --text-color: #e2e8f0;
+    --sidebar-bg: #0f172a;
+    --nav-bg: #1e293b;
+    --border-color: #334155;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    color: var(--text-color);
+}
+
+.sidebar {
+    background: var(--sidebar-bg) !important;
+    box-shadow: -5px 0 20px rgba(132, 141, 140, 0.2);
+}
+
+.nav-item {
+    background: var(--nav-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color);
+}
+
+.org-card, .stat-card, .quick-link-card, .top-bar, .employees-table-wrapper {
+    background: var(--card-bg) !important;
+    color: var(--text-color);
+}
+
+.data-table th {
+    background: #334155 !important;
+    color: white;
+}
+
+.data-table td {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.search-box input {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+
+/* تنظیم hover برای حالت روز */
+.nav-item:hover {
+    background: #dbeafe !important;
+    color: #1e40af !important;
+}
+
+.nav-item:hover span {
+    color: #1e40af !important;
+}
+
+/* تنظیم hover برای حالت شب */
+body.dark-mode .nav-item:hover {
+    background: #334155 !important;
+    color: #94a3b8 !important;
+}
+
+body.dark-mode .nav-item:hover span {
+    color: #94a3b8 !important;
+}
+
+/* تنظیم آیتم فعال */
+.nav-item.active {
+    background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+    color: white !important;
+}
+
+.nav-item.active span {
+    color: white !important;
+}
+
+/* حالت شب - آیتم فعال */
+body.dark-mode .nav-item.active {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+    color: white !important;
+}
+
+        @media (max-width: 768px) {
+    .sidebar {
+        right: -280px;
+    }
+    .sidebar.open {
+        right: 0;
+    }
+    .main-content {
+        margin-right: 0;
+        padding: 20px;
+    }
+    .menu-toggle {
+        display: block;
+        bottom: 20px;
+        left: 20px;
+    }
+
+            .sub-sections {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            font-size: 1.7rem;
+            color: #0f172a;
+        }
+
+        .section-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        
+
+        .badge-blue {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 900px;
+            border-radius: 30px;
+            animation: slideDown 0.3s ease;
+        }
+.data-table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.data-table th:first-child {
+    border-top-right-radius: 20px;
+}
+
+.data-table th:last-child {
+    border-top-left-radius: 20px;
+}
+
+
+/* حالت شب - رنگ عنوان بخش مدیریت پروژه‌ها */
+body.dark-mode .section-title span {
+    color: white !important;
+}
+
+/* اگر فقط می‌خواهی برای مدیریت پروژه‌ها باشد */
+body.dark-mode #projectmanagementSection .section-title span {
+    color: white !important;
+}
+
+/* برای همه عنوان‌های بخش‌ها */
+body.dark-mode .section-title span:last-child {
+    color: white !important;
+}
+
+
+.datetime-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+#themeToggleBtn {
+    background: #e2e8f0;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    padding: 0;
+}
+
+#themeToggleBtn img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.logout-btn {
+    flex-shrink: 0;
+}
+
+#persianDate, #currentTime {
+    white-space: nowrap;
+}
+
+.theme-btn {
+    background: #e2e8f0;
+    border: none;
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    margin-right: 10px;  /* اضافه کن - فاصله از راست */
+}
+/* گرد کردن گوشه‌های هدر همه جداول */
+.employees-table-wrapper th:first-child {
+    border-top-right-radius: 20px;
+}
+
+.employees-table-wrapper th:last-child {
+    border-top-left-radius: 20px;
+}
+
+/* حالت شب - رنگ متن لوگو */
+body.dark-mode .logo-text {
+    color: white !important;
+}
+
+
+/* حالت شب - مودال صورت وضعیت و تعدیل */
+body.dark-mode .modal-content {
+    background: #1e293b !important;
+    color: #e2e8f0 !important;
+}
+
+body.dark-mode .modal-content h3 {
+    color: #f1f5f9 !important;
+}
+
+body.dark-mode .modal-content .modal-close {
+    color: #94a3b8 !important;
+}
+
+body.dark-mode .modal-content .modal-close:hover {
+    color: #ef4444 !important;
+}
+
+/* دکمه‌ها در حالت شب */
+body.dark-mode .modal-btn.status-btn {
+    background: #3b82f6 !important;
+    color: white !important;
+}
+
+body.dark-mode .modal-btn.adjust-btn {
+    background: #10b981 !important;
+    color: white !important;
+}
+
+/* جدول داخل مودال در حالت شب */
+body.dark-mode .modal-content .data-table {
+    background: #0f172a !important;
+}
+
+body.dark-mode .modal-content .data-table th {
+    background: #334155 !important;
+    color: #f1f5f9 !important;
+}
+
+body.dark-mode .modal-content .data-table td {
+    background: #1e293b !important;
+    color: #cbd5e1 !important;
+    border-bottom-color: #334155 !important;
+}
+
+/* بخش جمع کل مبلغ در حالت شب */
+body.dark-mode .modal-content div[style*="background:#f0f9ff"] {
+    background: #1e293b !important;
+    border: 1px solid #334155 !important;
+}
+
+body.dark-mode .modal-content div[style*="background:#f0f9ff"] p {
+    color: #e2e8f0 !important;
+}
+
+/* اگر میخواهی متن‌ها مشکی شود */
+body.dark-mode .modal-content .data-table td {
+    color: #ffffff !important;
+}
+
+/* کوچک کردن فونت وضعیت */
+.status-badge {
+    font-size: 0.7rem !important;
+    padding: 3px 8px !important;
+}
+
+/* گرد کردن گوشه‌های مودال و جدول */
+.modal-content {
+    border-radius: 25px !important;
+}
+
+.modal-content table {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.modal-content th:first-child {
+    border-top-right-radius: 16px;
+}
+
+.modal-content th:last-child {
+    border-top-left-radius: 16px;
+}
+
+.modal-content tr:last-child td:first-child {
+    border-bottom-right-radius: 16px;
+}
+
+.modal-content tr:last-child td:last-child {
+    border-bottom-left-radius: 16px;
+}
+
+/* حالت شب - هدر جدول مودال */
+body.dark-mode .modal-content table thead tr {
+    background: #0f172a !important;
+}
+
+body.dark-mode .modal-content table th {
+    background: #0f172a !important;
+    color: #e2e8f0 !important;
+    border-bottom-color: #334155 !important;
+}
+
+/* حالت شب - ردیف‌های جدول مودال */
+body.dark-mode .modal-content table tbody tr {
+    border-bottom-color: #334155 !important;
+}
+
+body.dark-mode .modal-content table tbody td {
+    color: #cbd5e1 !important;
+}
+
+/* حالت شب - ردیف‌های زوج */
+body.dark-mode .modal-content table tbody tr:nth-child(even) {
+    background: #1e293b !important;
+}
+
+/* حالت شب - ردیف‌های فرد */
+body.dark-mode .modal-content table tbody tr:nth-child(odd) {
+    background: #0f172a !important;
+}
+
+/* حالت شب - hover روی ردیف‌ها */
+body.dark-mode .modal-content table tbody tr:hover {
+    background: #334155 !important;
+}
+
+/* حالت شب - اسکرول بار */
+body.dark-mode .modal-content div[style*="overflow-x: auto"]::-webkit-scrollbar {
+    height: 6px;
+}
+
+body.dark-mode .modal-content div[style*="overflow-x: auto"]::-webkit-scrollbar-track {
+    background: #1e293b;
+    border-radius: 10px;
+}
+
+body.dark-mode .modal-content div[style*="overflow-x: auto"]::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 10px;
+}
+
+
+/* ========== استایل مودال بزرگتر و ریسپانسیو ========== */
+.modal-content {
+    background-color: white;
+    margin: 3% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 1200px;
+    min-width: auto;
+    border-radius: 30px;
+    animation: slideDown 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* فونت بزرگتر برای کل مودال */
+.modal-content * {
+    font-family: 'B Nazanin', 'Tahoma', 'Segoe UI', 'Arial', sans-serif !important;
+}
+
+.modal-content h3 {
+    font-size: 1.8rem !important;
+    margin-bottom: 20px !important;
+}
+
+.modal-content th {
+    font-size: 1.1rem !important;
+    padding: 15px 12px !important;
+}
+
+.modal-content td {
+    font-size: 1rem !important;
+    padding: 12px 12px !important;
+}
+
+.modal-content .modal-btn {
+    font-size: 1.1rem !important;
+    padding: 12px 35px !important;
+}
+
+/* جمع کل مبلغ */
+.modal-content div[style*="margin-top: 20px"] p {
+    font-size: 1.05rem !important;
+    margin: 12px 0 !important;
+}
+
+/* ========== ریسپانسیو برای موبایل ========== */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95% !important;
+        margin: 5% auto !important;
+        padding: 20px !important;
+        max-height: 85vh !important;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.4rem !important;
+    }
+    
+    .modal-content th {
+        font-size: 0.85rem !important;
+        padding: 8px 6px !important;
+        white-space: nowrap !important;
+    }
+    
+    .modal-content td {
+        font-size: 0.8rem !important;
+        padding: 8px 6px !important;
+        white-space: nowrap !important;
+    }
+    
+    .modal-content .modal-btn {
+        font-size: 0.9rem !important;
+        padding: 8px 20px !important;
+    }
+    
+    .modal-buttons {
+        gap: 10px !important;
+        margin: 20px 0 !important;
+    }
+    
+    .modal-content div[style*="margin-top: 20px"] p {
+        font-size: 0.85rem !important;
+        margin: 8px 0 !important;
+    }
+    
+    /* اسکرول افقی برای جدول در موبایل */
+    .modal-content div[style*="overflow-x: auto"] {
+        overflow-x: auto !important;
+    }
+}
+
+/* ========== اسکرول بار سفارشی ========== */
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 10px;
+}
+
+/* ========== حالت شب ========== */
+body.dark-mode .modal-content {
+    background: #1e293b;
+}
+
+body.dark-mode .modal-content th {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+body.dark-mode .modal-content td {
+    color: #cbd5e1;
+    border-bottom-color: #334155;
+}
+
+
+/* ========== فقط عکس واحدهای سازمانی ========== */
+#orgUnits .org-card img {
+    width: 290px !important;
+    height: 290px !important;
+    border-radius: 20px !important;
+    object-fit: cover !important;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+#orgUnits .org-card img:hover {
+    transform: scale(1.03);
+    border-color: #3b82f6;
+    box-shadow: 0 6px 16px rgba(59,130,246,0.2);
+}
+
+/* ایموجی پیش‌فرض واحدهای سازمانی */
+#orgUnits .org-card div[style*="font-size: 2.5rem"] {
+    width: 200px !important;
+    height: 200px !important;
+    border-radius: 20px !important;
+    background: linear-gradient(135deg, #dbeafe, #eff6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px auto;
+    font-size: 2.8rem !important;
+}
+
+/* حالت شب */
+body.dark-mode #orgUnits .org-card img {
+    border-color: #334155;
+}
+
+body.dark-mode #orgUnits .org-card img:hover {
+    border-color: #3b82f6;
+}
+
+body.dark-mode #orgUnits .org-card div[style*="font-size: 2.5rem"] {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+}
+
+/* ========== حالت شب برای مودال مستندات ========== */
+body.dark-mode #orgDocsModal .modal-content {
+    background: #1e293b !important;
+}
+
+body.dark-mode #orgDocsModal .modal-content h3 {
+    color: #f1f5f9 !important;
+}
+
+body.dark-mode #orgDocsModal .modal-content h4 {
+    color: #f1f5f9 !important;
+    border-bottom-color: #334155 !important;
+}
+
+body.dark-mode #orgDocsModal .modal-content > div > div {
+    background: #0f172a !important;
+}
+
+body.dark-mode #orgDocsModal .modal-content > div > div > div {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+}
+
+/* ========== این قسمت مهمه - متن فرم‌ها و دستورالعمل‌ها ========== */
+body.dark-mode #orgDocsModal .modal-content > div > div > div span {
+    color: #000000 !important;  /* مشکی */
+    font-weight: 500 !important;
+}
+/* ========== پایان ========== */
+
+body.dark-mode #orgDocsModal .modal-close {
+    color: #94a3b8 !important;
+}
+
+body.dark-mode #orgDocsModal .modal-close:hover {
+    color: #ef4444 !important;
+}
+
+body.dark-mode #orgDocsModal button:first-child {
+    background: #3b82f6 !important;
+}
+
+body.dark-mode #orgDocsModal button:last-child {
+    background: #10b981 !important;
+}
+
+/* ثابت کردن هدر جدول در مودال */
+.modal-data table {
+    display: block;
+}
+
+.modal-data tbody {
+    display: block;
+    overflow-y: auto;
+    max-height: 350px;
+}
+
+.modal-data thead,
+.modal-data tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.modal-data thead {
+    position: sticky;
+    top: 0;
+    background: #f1f5f9;
+    z-index: 10;
+}
+
+/* تنظیم عرض ستون‌ها */
+.modal-data th,
+.modal-data td {
+    width: 16.6%;
+    padding: 10px;
+    text-align: center;
+}
+
+/* حالت شب */
+body.dark-mode .modal-data thead {
+    background: #0f172a;
+}
+body.dark-mode .modal-data th {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+/* دکمه پشتیبانی */
+/* دکمه پشتیبانی - حالت دسکتاپ (صفحه بزرگ) */
+.support-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59,130,246,0.4);
+    border: none;
+}
+
+.support-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(59,130,246,0.5);
+}
+
+.support-btn img {
+    width: 50px;
+    height: 35px;
+}
+
+/* مودال پشتیبانی - حالت دسکتاپ */
+.support-modal {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    left: 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 320px;
+    z-index: 1001;
+    animation: slideUp 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.support-modal.active {
+    display: block;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.support-card {
+    padding: 20px;
+}
+
+.support-card h4 {
+    color: #1e40af;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid #bfdbfe;
+    padding-bottom: 10px;
+}
+
+.support-info p {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #334155;
+}
+
+.support-info i {
+    width: 25px;
+    color: #3b82f6;
+}
+
+.support-close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #94a3b8;
+}
+
+.support-close:hover {
+    color: #ef4444;
+}
+
+
+/* حالت شب */
+body.dark-mode .support-modal {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .support-card h4 {
+    color: #94a3b8;
+    border-bottom-color: #334155;
+}
+
+body.dark-mode .support-info p {
+    color: #cbd5e1;
+}
+
+/* استایل کارت گواهینامه */
+.certificate-card {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.certificate-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(59,130,246,0.15);
+    border-color: #3b82f6;
+}
+
+.certificate-image {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.certificate-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #1e40af;
+}
+
+.certificate-date {
+    font-size: 0.9rem;
+    margin: 5px 0;
+    padding: 8px 15px;
+    border-radius: 50px;
+    background: #f8fafc;
+    display: inline-block;
+}
+
+.certificate-date.expired {
+    color: #dc2626 !important;
+    font-weight: bold;
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+}
+
+.certificate-date.valid {
+    color: #10b981 !important;
+    background: #d1fae5;
+    border: 1px solid #a7f3d0;
+}
+
+.date-label {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 5px;
+}
+
+.status-badge-cert {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    margin-top: 10px;
+}
+
+.status-expired {
+    background: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.status-valid {
+    background: #d1fae5;
+    color: #10b981;
+    border: 1px solid #a7f3d0;
+}
+
+/* حالت شب */
+body.dark-mode .certificate-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+body.dark-mode .certificate-title {
+    color: #94a3b8;
+}
+
+/* وضعیت منقضی شده در جدول */
+.status-expired-row {
+    color: #dc2626 !important;
+    font-weight: bold;
+}
+
+.status-valid-row {
+    color: #10b981 !important;
+}
+
+/* رنگ ردیف‌های جدول برای وضعیت‌های مختلف */
+.certificate-row-expired {
+    background-color: rgba(220, 38, 38, 0.05);
+}
+
+.certificate-row-valid {
+    background-color: rgba(16, 185, 129, 0.05);
+}
+
+/* حالت شب */
+body.dark-mode .certificate-row-expired {
+    background-color: rgba(220, 38, 38, 0.15);
+}
+
+body.dark-mode .certificate-row-valid {
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+/* ========== تنظیمات فقط برای جدول گواهینامه‌ها ========== */
+#certificatesSection .data-table {
+    table-layout: fixed !important;
+}
+
+/* عرض ستون ردیف */
+#certificatesSection .data-table th:first-child,
+#certificatesSection .data-table td:first-child {
+    width: 70px !important;
+    min-width: 70px !important;
+    max-width: 70px !important;
+    text-align: center !important;
+}
+
+/* عرض ستون عنوان گواهینامه */
+#certificatesSection .data-table th:nth-child(2),
+#certificatesSection .data-table td:nth-child(2) {
+    width: auto !important;
+    text-align: center !important;
+}
+
+/* عرض ستون تاریخ شروع */
+#certificatesSection .data-table th:nth-child(3),
+#certificatesSection .data-table td:nth-child(3) {
+    width: 130px !important;
+    min-width: 130px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+
+/* عرض ستون تاریخ پایان */
+#certificatesSection .data-table th:nth-child(4),
+#certificatesSection .data-table td:nth-child(4) {
+    width: 130px !important;
+    min-width: 130px !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+
+/* عرض ستون وضعیت */
+#certificatesSection .data-table th:nth-child(5),
+#certificatesSection .data-table td:nth-child(5) {
+    width: 100px !important;
+    min-width: 100px !important;
+    text-align: center !important;
+}
+
+/* حذف white-space قبلی که ممکنه مشکل ایجاد کنه */
+#certificatesSection .data-table td {
+    white-space: normal !important;
+}
+
+/* فقط تاریخ‌ها در یک خط باشن */
+#certificatesSection .data-table td:nth-child(3),
+#certificatesSection .data-table td:nth-child(4) {
+    white-space: nowrap !important;
+}
+
+#certificatesSection .data-table td:nth-child(2) { font-size: 1.1rem !important; font-weight: normal !important; }
+
+/* تنظیم عمودی ستون‌های جدول گواهینامه */
+#certificatesSection .data-table td {
+    vertical-align: middle !important;
+}
+
+/* تنظیم وضعیت در وسط */
+#certificatesSection .data-table td:last-child {
+    vertical-align: middle !important;
+}
+
+#certificatesSection .status-badge-cert {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+/* ========== رفع مشکل نمایش تاریخ در تم شب ========== */
+body.dark-mode .certificate-date.valid {
+    color: #4ade80 !important;  /* سبز روشن برای خوانایی */
+    background: rgba(16, 185, 129, 0.15) !important;
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+}
+
+body.dark-mode .certificate-date.expired {
+    color: #f87171 !important;  /* قرمز روشن برای خوانایی */
+    background: rgba(220, 38, 38, 0.15) !important;
+    border: 1px solid rgba(220, 38, 38, 0.3) !important;
+}
+
+/* رفع مشکل وضعیت‌ها در جدول */
+body.dark-mode .status-badge-cert.status-valid {
+    background: rgba(16, 185, 129, 0.15) !important;
+    color: #010c05 !important;
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+}
+
+body.dark-mode .status-badge-cert.status-expired {
+    background: rgba(220, 38, 38, 0.15) !important;
+    color: #f87171 !important;
+    border: 1px solid rgba(220, 38, 38, 0.3) !important;
+}
+
+/* رفع مشکل تاریخ‌های معتبر در ردیف‌های جدول */
+body.dark-mode .status-valid-row {
+    color: #010a04 !important;
+}
+
+body.dark-mode .status-expired-row {
+    color: #f87171 !important;
+}
+
+/* پس‌زمینه ردیف‌ها در تم شب */
+body.dark-mode .certificate-row-valid {
+    background-color: rgba(16, 185, 129, 0.08) !important;
+}
+
+body.dark-mode .certificate-row-expired {
+    background-color: rgba(220, 38, 38, 0.08) !important;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+
+<button class="menu-toggle" id="menuToggle">☰</button>
+
+<div class="sidebar" id="sidebar">
+    <div class="logo-area">
+        <div class="logo-img">
+            <img src="logo/logo.jpg" alt="لوگو" style="width: 40px; height: 40px; border-radius: 12px; object-fit: contain;">   
+        </div>
+        <div class="logo-text">پرتال شرکت تونل سد آریانا</div>
+    </div>
+
+    <div class="nav-item active" data-section="projectmanagement">
+        <img src="logo/projectmanagment.jpg" alt="مدیریت پروژه" style="width: 50px; height: 50px; object-fit: contain;">
+        <span>مدیریت پروژه‌ها</span>
+    </div>
+
+    <div class="nav-item" data-section="projects">
+        <img src="logo/Cost.jpg" alt="صورت وضعیت" style="width: 45px; height: 45px; object-fit: contain;">
+        <span>صورت وضعیت و تعدیل پروژه‌ها</span>
+    </div>
+
+    <div class="nav-item" data-section="certificates">
+    <img src="logo/certificate.jpg" alt="گواهینامه‌ها" style="width: 55px; height: 50px; object-fit: contain;">
+    <span>گواهینامه‌ها</span>
+</div>
+
+    <div class="nav-item" data-section="org">
+        <img src="logo/Company.jpg" alt="واحدهای سازمانی" style="width: 50px; height: 50px; object-fit: contain;">
+        <span>واحدهای سازمانی</span>
+    </div>
+
+    <div class="nav-item" data-section="employees">
+         <img src="logo/empolyer.jpg" alt="لیست کارکنان" style="width: 50px; height: 50px; object-fit: contain;">
+        <span>لیست کارکنان</span>
+    </div>
+    
+<div class="nav-item" data-section="chat" onclick="window.open('chat.html', '_blank')">
+    <img src="logo/chat.jpg" alt="چت" style="width: 45px; height: 45px; object-fit: contain;">
+    <span>چت آنلاین</span>
+</div>
+
+    <div class="nav-item" data-section="links">
+        <img src="logo/Link.jpg" alt="لینک‌های کاربردی" style="width: 50px; height: 50px; object-fit: contain;">
+        <span>لینک‌های کاربردی</span>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="top-bar">
+    <div class="welcome-text">
+        <span id="userNameDisplay">کاربر</span>، خوش آمدید 👋
+    </div>
+    <div class="datetime-area">
+    <span id="persianDate" style="margin-left: 15px; font-size: 1.2rem; color: #1e40af;"></span>
+    <span id="currentTime" style="margin-left: 15px; font-size: 1.2rem; color: #1e40af;"></span>
+    <button id="themeToggleBtn" style="background: transparent; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; width: 40px; height: 40px; border-radius: 50%; transition: all 0.3s ease;">
+    <img id="themeIcon" src="logo/sun.jpg" alt="تغییر تم" style="width: 28px; height: 28px; object-fit: contain;">
+</button>
+    <button class="logout-btn" id="logoutBtn">خروج</button>
+</div>
+</div>
+
+<div id="certificatesSection" class="section">
+    <div class="section-title" style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/certificate.jpg" alt="گواهینامه‌ها" style="width: 65px; height: 65px; object-fit: contain;">
+        <span style="font-size: 1.5rem; font-weight: bold;">گواهینامه‌ها</span>
+    </div>
+    
+    <!-- باکس جستجو -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 15px; flex-wrap: wrap;">
+        <div class="search-box" style="margin-bottom: 0;">
+            <input type="text" id="searchCertificate" placeholder="🔍جستجو">
+        </div>
+        <button onclick="exportCertificatesToExcel()" style="background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-family: inherit; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+            <img src="logo/excel.jpg" alt="خروجی اکسل" style="width: 32px; height: 32px; object-fit: contain;">
+            خروجی اکسل گواهینامه‌ها
+        </button>
+    </div>
+    
+    <!-- دکمه‌های فیلتر وضعیت - زیر جستجو -->
+    <!-- دکمه‌های فیلتر وضعیت - زیر جستجو -->
+<div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; justify-content: flex-start;">
+    <button id="filterAllCertificates" class="filter-cert-btn active" data-filter="all" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-family: inherit; display: flex; align-items: center; gap: 8px;">
+        <img src="logo/all.jpg" alt="همه" style="width: 30px; height: 30px;"> همه
+    </button>
+    <button id="filterValidCertificates" class="filter-cert-btn" data-filter="valid" style="background: #e2e8f0; color: #1e293b; border: none; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-family: inherit; display: flex; align-items: center; gap: 8px;">
+        <img src="logo/valid.jpg" alt="معتبر" style="width: 30px; height: 30px;"> معتبر
+    </button>
+    <button id="filterExpiredCertificates" class="filter-cert-btn" data-filter="expired" style="background: #e2e8f0; color: #1e293b; border: none; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-family: inherit; display: flex; align-items: center; gap: 8px;">
+        <img src="logo/expired.jpg" alt="منقضی شده" style="width: 30px; height: 30px;"> منقضی شده
+    </button>
+</div>
+    
+    <div class="employees-table-wrapper">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ردیف</th>
+                    <th>عنوان گواهینامه</th>
+                    <th>تاریخ شروع</th>
+                    <th>تاریخ پایان</th>
+                    <th>وضعیت</th>
+                </tr>
+            </thead>
+            <tbody id="certificatesTableBody">
+                <tr><td colspan="5" style="text-align:center;">در حال بارگذاری......<\/td><\/tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+    <div id="orgSection" class="section">
+    <div class="section-title" style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/Company.jpg" alt="واحدهای سازمانی" style="width: 50px; height: 50px; object-fit: contain;">
+        <span style="font-size: 1.5rem; font-weight: bold;">واحدهای سازمانی</span>
+    </div>
+    
+    <!-- باکس جستجو -->
+    <div class="search-box" style="margin-bottom: 20px;">
+        <input type="text" id="searchOrgUnit" placeholder="🔍 جستجو">
+    </div>
+    
+    <div id="orgUnits" class="org-grid"></div>
+    <div id="subSectionsContainer"></div>
+</div>
+
+    <div id="employeesSection" class="section">
+    <div class="section-title" style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/empolyer.jpg" alt="لیست کارکنان" style="width: 55px; height: 55px; object-fit: contain;">
+        <span style="font-size: 1.5rem; font-weight: bold;">لیست کارکنان</span>
+    </div>
+        <div class="search-box"><input type="text" id="searchEmployee" placeholder="🔍 جستجو"></div>
+        <div class="employees-table-wrapper">
+            <table>
+                <thead><tr><th>نام</th><th>نام خانوادگی</th><th>سمت</th><th>شماره داخلی</th></tr></thead>
+                <tbody id="employeesList"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="projectsSection" class="section">
+    <div class="section-title" style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/Cost.jpg" alt="صورت وضعیت" style="width: 50px; height: 50px; object-fit: contain;">
+        <span style="font-size: 1.5rem; font-weight: bold;">صورت وضعیت و تعدیل پروژه‌ها</span>
+    </div>
+    
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 15px; flex-wrap: wrap;">
+            <div class="search-box" style="margin-bottom: 0;">
+                <input type="text" id="searchProject" placeholder="🔍 جستجو">
+            </div>
+            <button onclick="exportWorkOrdersAndAdjustments()" style="background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-family: inherit; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+    <img src="logo/excel.jpg" alt="صورت وضعیت" style="width: 32px; height: 32px; object-fit: contain;">
+    خروجی صورت وضعیت و تعدیل
+</button>
+        </div>
+        <div id="projectsList" class="org-grid"></div>
+    </div>
+
+    <div id="linksSection" class="section">
+    <div class="section-title" style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/link.jpg" alt="لینک‌ها" style="width: 50px; height: 50px; object-fit: contain;">
+        <span style="font-size: 1.5rem; font-weight: bold;">لینک‌های کاربردی</span>
+    </div>
+        <div id="quickLinks" class="links-grid"></div>
+    </div>
+
+    <div id="projectmanagementSection" class="section active">
+    <div class="section-title" style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo/projectmanagment.jpg" alt="مدیریت پروژه‌ها" style="width: 50px; height: 50px; object-fit: contain;">
+        <span style="font-size: 1.5rem; font-weight: bold;">مدیریت پروژه‌ها</span>
+    </div>
+        
+     <div class="status-stats" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin-bottom: 30px; margin-top: 20px;">
+    <div class="stat-card status-current" data-filter-status="جاری" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 20px; border-radius: 20px; text-align: center; cursor: pointer;">
+        <div style="font-size: 2rem;"></div>
+        <div style="font-size: 2rem; font-weight: bold;" id="statCurrent">0</div>
+        <div>تعداد پروژه‌های جاری</div>
+    </div>
+    <div class="stat-card status-completed" data-filter-status="پایان یافته" style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 20px; border-radius: 20px; text-align: center; cursor: pointer;">
+        <div style="font-size: 1.5rem;"></div>
+        <div style="font-size: 2rem; font-weight: bold;" id="statCompleted">0</div>
+        <div>تعداد پروژه‌های پایان یافته</div>
+    </div>
+    <div class="stat-card status-warranty" data-filter-status="دوره گارانتی" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 20px; border-radius: 20px; text-align: center; cursor: pointer;">
+        <div style="font-size: 1.5rem;"></div>
+        <div style="font-size: 2rem; font-weight: bold;" id="statWarranty">0</div>
+        <div>تعداد پروژه‌های دوره گارانتی</div>
+    </div>
+    <div class="stat-card status-tender" data-filter-status="در حال ابلاغ" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white; padding: 20px; border-radius: 20px; text-align: center; cursor: pointer;">
+        <div style="font-size: 1.8rem;"></div>
+        <div style="font-size: 2rem; font-weight: bold;" id="statTender">0</div>
+        <div>تعداد پروژه‌های در حال ابلاغ</div>
+    </div>
+</div>
+
+        <div class="language-selector" style="margin-bottom:20px; display:flex; align-items:center; gap:15px; justify-content:flex-start;">
+            <label style="font-weight:bold;">زبان:</label>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button onclick="setLanguage('fa')" class="lang-btn" data-lang="fa">
+                    <img src="https://flagcdn.com/w20/ir.jpg" width="22" height="16" alt="ایران" style="border-radius:3px;"> فارسی
+                </button>
+                <button onclick="setLanguage('en')" class="lang-btn" data-lang="en">
+                    <img src="https://flagcdn.com/w20/gb.jpg" width="22" height="16" alt="انگلیس" style="border-radius:3px;"> English
+                </button>
+                <button onclick="setLanguage('ru')" class="lang-btn" data-lang="ru">
+                    <img src="https://flagcdn.com/w20/ru.jpg" width="22" height="16" alt="روسیه" style="border-radius:3px;"> Русский
+                </button>
+            </div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; gap: 15px; flex-wrap: wrap;">
+            <div class="search-box" style="margin-bottom: 0;">
+                <input type="text" id="searchProjectManagement" placeholder="🔍 جستجو">
+            </div>
+            <button id="exportExcelBtn" onclick="exportToExcel()" style="background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; font-family: inherit; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+    <img src="logo/excel.jpg" alt="صورت وضعیت" style="width: 32px; height: 32px; object-fit: contain;">
+    خروجی اکسل پروژه‌ها
+</button>
+        </div>
+        
+        <div class="employees-table-wrapper">
+            <table class="data-table">
+                <thead id="pmTableHeader">
+                    <tr>
+                        <th>نام پروژه</th>
+                        <th>وضعیت</th>
+                        <th>موقعیت</th>
+                        <th>محل پروژه</th>
+                        <th>نام کارفرما</th>
+                        <th>مبلغ قرارداد</th>
+                        <th>نوع ارز</th>
+                        <th>تاریخ شروع</th>
+                        <th>تاریخ پایان</th>
+                    </tr>
+                </thead>
+                <tbody id="projectManagementList"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h3 id="modalProjectTitle"></h3>   
+        <div class="modal-buttons">
+            <button id="statusBtn" class="modal-btn status-btn">
+    <img src="logo/invoice1.jpg" alt="invoice" style="width: 35px; height: 35px; margin-left: 8px; vertical-align: middle;">
+    صورت وضعیت
+</button>
+            <button id="adjustBtn" class="modal-btn adjust-btn">
+    <img src="logo/Invoice2.jpg" alt="adjust" style="width: 35px; height:35px; margin-left: 5px; vertical-align: middle;">
+    تعدیل
+</button>
+        </div>
+        <div id="modalDataDisplay" class="modal-data"></div>
+    </div>
+</div>
+<!-- مودال نمایش فرم‌ها و دستورالعمل‌ها -->
+<div id="orgDocsModal" class="modal" style="display: none;">
+    <div class="modal-content" style="max-width: 1000px;">
+        <span class="modal-close" onclick="closeOrgDocsModal()">&times;</span>
+        <h3 id="orgModalTitle" style="margin-bottom: 20px;"></h3>
+        <div id="orgModalContent"></div>
+    </div>
+</div>
+
+<!-- دکمه پشتیبانی -->
+<button class="support-btn" id="supportBtn">
+    <img src="logo/support.jpg" alt="پشتیبانی">
+</button>
+
+<!-- مودال اطلاعات پشتیبانی -->
+<div class="support-modal" id="supportModal">
+    <div class="support-card">
+        <button class="support-close" id="closeSupportModal">&times;</button>
+        <h4>
+            <i class="fas fa-headset"></i>
+            پشتیبانی پرتال شرکت تونل سد آریانا
+        </h4>
+        <div class="support-info">
+            <p><i class="fas fa-user"></i> <strong>پشتیبان سایت:</strong> سینا مجیبی پور</p>
+            <p><i class="fas fa-phone"></i> <strong>تلفن:</strong> ۰۲۱-92001010</p>
+            <p><i class="fas fa-mobile-alt"></i> <strong>موبایل:</strong> ۰۹۱۲-8502549</p>
+            <p><i class="fas fa-envelope"></i> <strong>ایمیل:</strong> sinamojibipour@yahoo.com</p>
+            <p><i class="fas fa-clock"></i> <strong>ساعت کاری:</strong>8 الی 17</p>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    let employeesList = [];
+    let orgUnitsList = [];
+    let documentsList = [];
+    let linksList = [];
+    let currentOrgUnit = null;
+    let projectsList = [];
+    let currentProject = null;
+    let projectManagementList = [];
+    let currentLanguage = 'fa';
+
+let certificatesList = [];
+let currentCertFilter = 'all';
+async function loadCertificates() {
+    console.log("✅ بارگذاری گواهینامه‌ها شروع شد");
+    const data = await loadCSV('certificates.csv');
+    
+    if (data && data.length > 0) {
+        certificatesList = data;
+        console.log("✅ از CSV لود شد:", certificatesList.length);
+    } else {
+        certificatesList = [
+            { id: "1", title: "گواهی نامه یدی", start_date: "1401/01/05", end_date: "1402/01/01" },
+            { id: "2", title: "گواهی نامه یدی", start_date: "1401/01/05", end_date: "1410/01/01" }
+        ];
+        console.log("⚠️ از داده نمونه استفاده شد");
+    }
+    renderCertificates();
+}
+
+function persianToGregorian(persianDate) {
+    if (!persianDate || persianDate === '-') return new Date(0);
+    
+    try {
+        const parts = persianDate.split('/');
+        if (parts.length !== 3) return new Date(0);
+        
+        let year = parseInt(parts[0]);
+        let month = parseInt(parts[1]);
+        let day = parseInt(parts[2]);
+        
+        // محاسبه روز ژولیوسی
+        let jy = year;
+        let jm = month;
+        let jd = day;
+        
+        let gy, gm, gd;
+        
+        let jy1 = jy;
+        let days = jd - 1;
+        
+        // تعداد روزهای هر ماه شمسی
+        const j_days_in_month = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29];
+        
+        // محاسبه روز سال شمسی
+        for (let i = 0; i < jm - 1; i++) {
+            days += j_days_in_month[i];
+        }
+        
+        // تشخیص کبیسه شمسی
+        function isJalaliLeap(y) {
+            let y_mod = y % 33;
+            return (y_mod === 1 || y_mod === 5 || y_mod === 9 || y_mod === 13 || y_mod === 17 || y_mod === 22 || y_mod === 26 || y_mod === 30);
+        }
+        
+        if (isJalaliLeap(jy)) {
+            j_days_in_month[11] = 30;
+        }
+        
+        // محاسبه روزهای سال میلادی
+        let days_in_year = isJalaliLeap(jy) ? 366 : 365;
+        
+        // تبدیل به میلادی با استفاده از ثابت 226894 (روز مبدا شمسی به میلادی)
+        let g_days = days + 226894 + (jy - 1) * 365 + Math.floor((jy - 1) / 4) - Math.floor((jy - 1) / 100) + Math.floor((jy - 1) / 400);
+        
+        // محاسبه سال میلادی
+        gy = 1;
+        while (g_days > 365) {
+            let isLeap = (gy % 4 === 0 && gy % 100 !== 0) || (gy % 400 === 0);
+            let days_in_g_year = isLeap ? 366 : 365;
+            if (g_days > days_in_g_year) {
+                g_days -= days_in_g_year;
+                gy++;
+            } else {
+                break;
+            }
+        }
+        
+        // محاسبه ماه و روز میلادی
+        const g_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        let isGLeap = (gy % 4 === 0 && gy % 100 !== 0) || (gy % 400 === 0);
+        if (isGLeap) g_days_in_month[1] = 29;
+        
+        gm = 1;
+        for (let i = 0; i < 12; i++) {
+            if (g_days > g_days_in_month[i]) {
+                g_days -= g_days_in_month[i];
+                gm++;
+            } else {
+                break;
+            }
+        }
+        gd = g_days;
+        
+        return new Date(gy, gm - 1, gd);
+        
+    } catch(e) {
+        console.error("خطا در تبدیل تاریخ:", persianDate, e);
+        return new Date(0);
+    }
+}
+
+
+function isDateExpired(endDate) {
+    if (!endDate || endDate === '-') return false;
+    
+    // گرفتن تاریخ امروز از بالای صفحه
+    const persianDateElement = document.getElementById('persianDate');
+    if (!persianDateElement) return false;
+    
+    const text = persianDateElement.textContent;
+    const match = text.match(/(\d{4}\/\d{2}\/\d{2})/);
+    if (!match) return false;
+    
+    const todayPersian = match[1]; // مثال: ۱۴۰۴/۰۹/۲۵
+    
+    // حذف کاراکترهای غیرعددی برای مقایسه
+    function toNumber(date) {
+        return parseInt(date.replace(/\//g, ''));
+    }
+    
+    const endNum = toNumber(endDate);
+    const todayNum = toNumber(todayPersian);
+    
+    // اگر تاریخ پایان کوچکتر از امروز باشد => منقضی شده
+    return endNum < todayNum;
+}
+
+function renderCertificates() {
+    const tbody = document.getElementById('certificatesTableBody');
+    if (!tbody) {
+        console.log("⚠️ certificatesTableBody پیدا نشد");
+        return;
+    }
+    
+    const searchTerm = document.getElementById('searchCertificate')?.value.toLowerCase().trim() || '';
+    
+    let filtered = certificatesList;
+    
+    // اعمال فیلتر وضعیت
+    if (currentCertFilter !== 'all') {
+        filtered = filtered.filter(cert => {
+            const isExpired = isDateExpired(cert.end_date);
+            if (currentCertFilter === 'valid') return !isExpired;
+            if (currentCertFilter === 'expired') return isExpired;
+            return true;
+        });
+    }
+    
+    // اعمال جستجو
+    if (searchTerm) {
+        filtered = filtered.filter(cert => {
+            const isExpired = isDateExpired(cert.end_date);
+            const statusText = isExpired ? 'منقضی شده' : 'معتبر';
+            
+            return (
+                (cert.title && cert.title.toLowerCase().includes(searchTerm)) ||
+                (cert.start_date && cert.start_date.toString().toLowerCase().includes(searchTerm)) ||
+                (cert.end_date && cert.end_date.toString().toLowerCase().includes(searchTerm)) ||
+                statusText.toLowerCase().includes(searchTerm)
+            );
+        });
+    }
+    
+    if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">🔍 هیچ گواهینامه‌ای یافت نشد</td></tr>';
+        return;
+    }
+    
+    tbody.innerHTML = '';
+    
+    filtered.forEach((cert, index) => {
+        const isExpired = isDateExpired(cert.end_date);
+        const statusText = isExpired ? 'منقضی شده' : 'معتبر';
+        const rowClass = isExpired ? 'certificate-row-expired' : 'certificate-row-valid';
+        const statusColor = isExpired ? 'status-expired-row' : 'status-valid-row';
+        
+        let startDate = cert.start_date || '-';
+        let endDate = cert.end_date || '-';
+        
+        if (currentLanguage === 'fa') {
+            startDate = toPersianNumber(startDate);
+            endDate = toPersianNumber(endDate);
+        }
+        
+        tbody.innerHTML += `
+            <tr class="${rowClass}">
+                <td style="text-align: center;">${index + 1}</td>
+                <td style="text-align: center; font-weight: bold;">${cert.title}</td>
+                <td style="text-align: center;">${startDate}</td>
+                <td style="text-align: center;"><span class="${statusColor}">${endDate}</span></td>
+                <td style="text-align: center;">
+                    <span class="status-badge-cert ${isExpired ? 'status-expired' : 'status-valid'}">
+                        ${statusText}
+                    </span>
+                </td>
+            </tr>
+        `;
+    });
+    
+    console.log("✅ فیلتر:", currentCertFilter, "- جستجو:", searchTerm, "- تعداد:", filtered.length);
+}
+
+
+function setupCertificateSearch() {
+    const searchInput = document.getElementById('searchCertificate');
+    if (!searchInput) return;
+    searchInput.addEventListener('keyup', function() {
+        renderCertificates();
+    });
+}
+
+function exportCertificatesToExcel() {
+    if (!certificatesList || certificatesList.length === 0) {
+        alert('❌ هیچ گواهینامه‌ای برای خروجی وجود ندارد!');
+        return;
+    }
+    
+    const exportData = certificatesList.map((cert, index) => {
+        const isExpired = isDateExpired(cert.end_date);
+        return {
+            "ردیف": index + 1,
+            "عنوان گواهینامه": cert.title,
+            "تاریخ شروع": cert.start_date,
+            "تاریخ پایان": cert.end_date,
+            "وضعیت": isExpired ? 'منقضی شده' : 'معتبر'
+        };
+    });
+    
+    const headers = Object.keys(exportData[0]);
+    const csvRows = [headers.join(',')];
+    
+    for (const row of exportData) {
+        const values = headers.map(header => {
+            let value = row[header] || '';
+            value = String(value).replace(/,/g, ' ');
+            return `"${value}"`;
+        });
+        csvRows.push(values.join(','));
+    }
+    
+    const blob = new Blob(["\uFEFF" + csvRows.join('\n')], { type: 'text/csv;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `certificates_${new Date().toLocaleDateString('fa-IR').replace(/\//g, '-')}.csv`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+    
+    alert(`✅ خروجی با ${exportData.length} رکورد ذخیره شد!`);
+}
+
+
+    const translations = {
+    fa: { 
+        project_name: "نام پروژه", status: "وضعیت", location: "موقعیت", site_address: "محل پروژه", 
+        employer: "نام کارفرما", contract_amount: "مبلغ قرارداد", currency: "نوع ارز", 
+        start_date: "تاریخ شروع", end_date: "تاریخ پایان", search_placeholder: "🔍 جستجو",
+        current: "تعداد پروژه‌های جاری",
+        completed: "تعداد پروژه‌های پایان یافته",
+        warranty: "تعداد پروژه‌های دوره گارانتی",
+        tender: "تعداد پروژه‌های در حال ابلاغ"
+    },
+    en: { 
+        project_name: "Project Name", status: "Status", location: "Location", site_address: "Site Address", 
+        employer: "Employer", contract_amount: "Contract Amount", currency: "Currency", 
+        start_date: "Start Date", end_date: "End Date", search_placeholder: "🔍 Search",
+        current: "Current Projects",
+        completed: "Completed Projects",
+        warranty: "Warranty Period Projects",
+        tender: "Being communicated Projects"
+    },
+    ru: { 
+        project_name: "Название проекта", status: "Статус", location: "Расположение", site_address: "Местоположение", 
+        employer: "Заказчик", contract_amount: "Сумма контракта", currency: "Валюта", 
+        start_date: "Дата начала", end_date: "Дата окончания", search_placeholder: "🔍 Поиск",
+        current: "Текущие проекты",
+        completed: "Завершенные проекты",
+        warranty: "Гарантийные проекты",
+        tender: "Ожидает утверждения проекты"
+    }
+};
+
+    async function loadCSV(filename) {
+    try {
+        const response = await fetch(filename);
+        if (!response.ok) return null;
+        const text = await response.text();
+        let cleanText = text;
+        if (cleanText.charCodeAt(0) === 0xFEFF) cleanText = cleanText.substring(1);
+        cleanText = cleanText.replace(/\r/g, '');
+        
+        const lines = [];
+        let currentLine = '';
+        let inQuote = false;
+        
+        // خواندن خطوط با در نظر گرفتن نقل قول‌ها
+        for (let i = 0; i < cleanText.length; i++) {
+            const char = cleanText[i];
+            if (char === '"') {
+                inQuote = !inQuote;
+                currentLine += char;
+            } else if (char === '\n' && !inQuote) {
+                lines.push(currentLine);
+                currentLine = '';
+            } else {
+                currentLine += char;
+            }
+        }
+        if (currentLine) lines.push(currentLine);
+        
+        if (lines.length < 2) return null;
+        
+        // خواندن هدرها
+        const headers = [];
+        inQuote = false;
+        let current = '';
+        const headerLine = lines[0];
+        
+        for (let i = 0; i < headerLine.length; i++) {
+            const char = headerLine[i];
+            if (char === '"') {
+                inQuote = !inQuote;
+            } else if (char === ',' && !inQuote) {
+                headers.push(current.trim().replace(/^"|"$/g, ''));
+                current = '';
+            } else {
+                current += char;
+            }
+        }
+        headers.push(current.trim().replace(/^"|"$/g, ''));
+        
+        const data = [];
+        
+        // خواندن داده‌ها
+        for (let i = 1; i < lines.length; i++) {
+            if (!lines[i].trim()) continue;
+            
+            const values = [];
+            inQuote = false;
+            current = '';
+            const line = lines[i];
+            
+            for (let j = 0; j < line.length; j++) {
+                const char = line[j];
+                if (char === '"') {
+                    inQuote = !inQuote;
+                } else if (char === ',' && !inQuote) {
+                    values.push(current.trim().replace(/^"|"$/g, ''));
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            values.push(current.trim().replace(/^"|"$/g, ''));
+            
+            if (values.length >= headers.length) {
+                const row = {};
+                headers.forEach((header, idx) => {
+                    let val = values[idx] || '';
+                    // حذف نقل قول‌های اضافی
+                    val = val.replace(/^"|"$/g, '');
+                    row[header] = val;
+                });
+                data.push(row);
+            }
+        }
+        
+        console.log(`✅ ${filename}: ${data.length} ردیف بارگذاری شد`);
+        return data;
+        
+    } catch (error) {
+        console.error(`❌ خطا در بارگذاری ${filename}:`, error);
+        return null;
+    }
+}
+
+
+
+
+    async function loadAllData() {
+    const employees = await loadCSV('employees.csv');
+    const orgUnits = await loadCSV('org_units.csv');
+    const documents = await loadCSV('documents.csv');
+    const links = await loadCSV('links.csv');
+    const users = await loadCSV('users.csv')
+    
+    
+    employeesList = (employees && employees.length > 0) ? employees : [
+        { firstName: "علی", lastName: "رضایی", position: "مدیر مالی", internalPhone: "۱۰۱" },
+        { firstName: "سارا", lastName: "کریمی", position: "کارشناس منابع انسانی", internalPhone: "۱۰۲" }
+    ];
+    
+    // ========== اصلاح: ذخیره orgUnits با ستون icon ==========
+    if (orgUnits && orgUnits.length > 0) {
+        orgUnitsList = orgUnits;
+    } else {
+        orgUnitsList = [
+            { id: "1", name: "واحد مالی", icon: "" },
+            { id: "2", name: "واحد منابع انسانی", icon: "" }
+        ];
+    }
+    // ========== پایان اصلاح ==========
+    
+    documentsList = (documents && documents.length > 0) ? documents : [
+        { unit_id: "1", type: "form", name: "فرم درخواست هزینه", file: "#" }
+    ];
+    
+    linksList = (links && links.length > 0) ? links : [
+        { title: "سایت سازمان", url: "#", icon: "🌐" }
+    ];
+    
+    // ========== اضافه کردن دسترسی چت از users.csv ==========
+    if (users && users.length > 0) {
+        const currentUser = localStorage.getItem('username');
+        const userData = users.find(u => u.username === currentUser);
+        
+        if (userData) {
+            // تنظیم دسترسی چت بر اساس CSV
+            const chatAccess = (userData.chat === 'TRUE' || userData.chat === 'true');
+            
+            // ذخیره در localStorage
+            const accessData = {
+                org: userData.org === 'TRUE',
+                employees: userData.employees === 'TRUE',
+                projects: userData.projects === 'TRUE',
+                links: userData.links === 'TRUE',
+                projectmanagement: userData.projectmanagement === 'TRUE',
+                chat: chatAccess,
+                certificates: userData.certificates === 'TRUE'
+            };
+            localStorage.setItem('userAccess', JSON.stringify(accessData));
+            console.log("✅ دسترسی چت از CSV:", chatAccess);
+        }
+    }
+    // ========== پایان بخش دسترسی ==========
+}
+    async function loadProjectsFromCSV() {
+    try {
+        const projects = await loadCSV('projects.csv');
+        const workOrders = await loadCSV('workorders.csv');
+        const adjustments = await loadCSV('adjustments.csv');
+        
+        if (projects && projects.length > 0) {
+            projectsList = projects.map(proj => ({
+                name: proj.projectname,
+                contractAmount: proj.contractAmount,
+                currency: proj.currency || "تومان",
+                imageLink: proj.image_link || "",  // ← اضافه کن
+                workOrders: [],
+                adjustments: []
+            }));
+            
+            if (workOrders && workOrders.length > 0) {
+                workOrders.forEach(wo => {
+                    const project = projectsList.find(p => p.name === wo.project_name);
+                    if (project) {
+                        project.workOrders.push({
+                            id: parseInt(wo.id),
+                            type: wo.type,
+                            fromDate: wo.fromDate,
+                            toDate: wo.toDate,
+                            amount: wo.amount,
+                            cumulative: wo.cumulative
+                        });
+                    }
+                });
+            }
+            
+            if (adjustments && adjustments.length > 0) {
+                adjustments.forEach(adj => {
+                    const project = projectsList.find(p => p.name === adj.project_name);
+                    if (project) {
+                        project.adjustments.push({
+                            id: parseInt(adj.id),
+                            type: adj.type,
+                            fromDate: adj.fromDate,
+                            toDate: adj.toDate,
+                            amount: adj.amount
+                        });
+                    }
+                });
+            }
+            
+            console.log("✅ پروژه‌ها از CSV بارگذاری شدند", projectsList);
+            return true;
+        }
+        return false;
+    } catch (error) {
+        console.error("❌ خطا:", error);
+        return false;
+    }
+}
+
+    async function loadProjectManagement() {
+        const data = await loadCSV('project_management.csv');
+        if (data && data.length > 0) {
+            projectManagementList = data;
+        } else {
+            projectManagementList = [
+                { project_name_fa: "تونل سد آریانا", project_name_en: "Ariana Tunnel", project_name_ru: "Тоннель Ариана", status_fa: "جاری", status_en: "In Progress", status_ru: "В процессе", location_fa: "استان البرز", location_en: "Alborz", location_ru: "Альборз", site_address_fa: "جاده چالوس", site_address_en: "Chalus Road", site_address_ru: "Чалус", employer_fa: "سازمان آب", employer_en: "Water Org", employer_ru: "Водная организация", contract_amount: "5000000000", currency: "تومان", start_date: "1402/01/01", end_date: "1406/12/29" },
+                { project_name_fa: "سد مخزنی آریانا", project_name_en: "Ariana Dam", project_name_ru: "Плотина Ариана", status_fa: "پایان یافته", status_en: "Completed", status_ru: "Завершен", location_fa: "استان تهران", location_en: "Tehran", location_ru: "Тегеран", site_address_fa: "لواسانات", site_address_en: "Lavasanat", site_address_ru: "Лавасанат", employer_fa: "وزارت نیرو", employer_en: "Energy Ministry", employer_ru: "Минэнерго", contract_amount: "8000000000", currency: "تومان", start_date: "1402/03/01", end_date: "1407/06/31" }
+            ];
+        }
+        renderProjectManagement();
+    }
+
+function updateStatusStats() {
+    const statusField = `status_${currentLanguage}`;
+    let currentCount = 0, completedCount = 0, warrantyCount = 0, tenderCount = 0;
+    
+    projectManagementList.forEach(project => {
+        const status = project[statusField];
+        
+        if (status === 'جاری' || status === 'In Progress' || status === 'Выполняется') {
+            currentCount++;
+        }
+        else if (status === 'پایان یافته' || status === 'Complete' || status === 'Завершенный') {
+            completedCount++;
+        }
+        else if (status === 'دوره گارانتی' || status === 'Warranty' || status === 'гарантия') {
+            warrantyCount++;
+        }
+        else if (status === 'در حال ابلاغ' || status === 'Being communicated' || status === 'Ожидает утверждения') {
+            tenderCount++;
+        }
+    });
+    
+    // به روز رسانی عنوان کارت‌ها بر اساس زبان
+    const trans = translations[currentLanguage];
+    const statCards = document.querySelectorAll('.stat-card');
+    if (statCards.length >= 4 && trans) {
+        statCards.forEach((card, index) => {
+            const titles = [trans.current, trans.completed, trans.warranty, trans.tender];
+            const titleDiv = card.querySelector('div:last-child');
+            if (titleDiv && titles[index]) {
+                titleDiv.textContent = titles[index];
+            }
+        });
+    }
+    
+    // نمایش اعداد - ساده و مستقیم
+    if (currentLanguage === 'fa') {
+        // فارسی: اعداد فارسی
+        const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        document.getElementById('statCurrent').textContent = currentCount.toString().replace(/\d/g, x => persianDigits[x]);
+        document.getElementById('statCompleted').textContent = completedCount.toString().replace(/\d/g, x => persianDigits[x]);
+        document.getElementById('statWarranty').textContent = warrantyCount.toString().replace(/\d/g, x => persianDigits[x]);
+        document.getElementById('statTender').textContent = tenderCount.toString().replace(/\d/g, x => persianDigits[x]);
+    } else {
+        // انگلیسی و روسی: اعداد انگلیسی
+        document.getElementById('statCurrent').textContent = currentCount;
+        document.getElementById('statCompleted').textContent = completedCount;
+        document.getElementById('statWarranty').textContent = warrantyCount;
+        document.getElementById('statTender').textContent = tenderCount;
+    }
+    
+    console.log("زبان فعلی:", currentLanguage, "اعداد:", currentCount, completedCount, warrantyCount, tenderCount);
+}
+
+    function renderProjectManagement() {
+    const tbody = document.getElementById('projectManagementList');
+    if (!tbody) return;
+    
+    const searchTerm = document.getElementById('searchProjectManagement')?.value.toLowerCase().trim() || '';
+    const nameField = `project_name_${currentLanguage}`;
+    const statusField = `status_${currentLanguage}`;
+    const locationField = `location_${currentLanguage}`;
+    const siteField = `site_address_${currentLanguage}`;
+    const employerField = `employer_${currentLanguage}`;
+    
+    const filtered = projectManagementList.filter(project => 
+        project[nameField]?.toLowerCase().includes(searchTerm) ||
+        project[employerField]?.toLowerCase().includes(searchTerm) ||
+        project[locationField]?.toLowerCase().includes(searchTerm)
+    );
+    
+    tbody.innerHTML = '';
+    if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">هیچ پروژه‌ای یافت نشد</td><td>';
+        return;
+    }
+    
+    filtered.forEach(project => {
+        let statusClass = '';
+        const statusText = project[statusField];
+        if (statusText === 'جاری' || statusText === 'In Progress' || statusText === 'Выполняется') statusClass = 'status-current';
+        else if (statusText === 'پایان یافته' || statusText === 'Complete' || statusText === 'Завершенный') statusClass = 'status-completed';
+        else if (statusText === 'دوره گارانتی' || statusText === 'Warranty' || statusText === 'гарантия') statusClass = 'status-warranty';
+        else if (statusText === 'در حال ابلاغ' || statusText === 'Being communicated' || statusText === 'Ожидает утверждения') statusClass = 'status-tender';
+
+
+
+
+        // استفاده از توابع جدید بر اساس زبان
+        const displayAmount = formatAmount(project.contract_amount, currentLanguage);
+        let startDateFormatted, endDateFormatted;
+
+if (currentLanguage === 'fa') {
+    // برای فارسی: از ستون start_date_fa و end_date_fa استفاده کن
+    startDateFormatted = project.start_date_fa || project.start_date || '-';
+    endDateFormatted = project.end_date_fa || project.end_date || '-';
+    // تبدیل به اعداد فارسی
+    startDateFormatted = toPersianNumber(startDateFormatted);
+    endDateFormatted = toPersianNumber(endDateFormatted);
+} else {
+    // برای انگلیسی و روسی: از ستون start_date و end_date استفاده کن
+    startDateFormatted = formatDateByLanguage(project.start_date, currentLanguage);
+    endDateFormatted = formatDateByLanguage(project.end_date, currentLanguage);
+}
+
+
+
+
+        tbody.innerHTML += `
+            <tr>
+                <td>${project[nameField] || '-'}</td>
+                <td><span class="status-badge ${statusClass}">${project[statusField] || '-'}</span></td>
+                <td>${project[locationField] || '-'}</td>
+                <td>${project[siteField] || '-'}</td>
+                <td>${project[employerField] || '-'}</td>
+                <td>${displayAmount}</td>
+                         <td style="white-space: nowrap;">
+             ${(project.currency || '-').replace(/\[br\]/g, '<br>').split('<br>').map(line => `<div>${line}</div>`).join('')}
+         </td>
+                <td>${startDateFormatted}</td>
+                <td>${endDateFormatted}</td>
+            </tr>
+        `;
+    });
+    
+
+     // ========== اضافه کن: برگرداندن کارت‌ها به حالت عادی ==========
+    document.querySelectorAll('.stat-card').forEach(card => {
+        card.style.opacity = '1';
+        card.style.transform = 'scale(1)';
+        card.style.boxShadow = '';
+    });
+
+    updateStatusStats();
+}
+
+
+function openOrgDocsModal(unitId, unitName) {
+    const modal = document.getElementById('orgDocsModal');
+    const title = document.getElementById('orgModalTitle');
+    const content = document.getElementById('orgModalContent');
+    
+   title.innerHTML = `<img src="logo/folder.jpg" alt="document" style="width: 45px; height: 28px; margin-left: 8px; vertical-align: middle;"> مستندات ${unitName}`;
+    
+    const unitDocs = documentsList.filter(doc => String(doc.unit_id) === String(unitId));
+    const forms = unitDocs.filter(doc => doc.type === 'form');
+    const instructions = unitDocs.filter(doc => doc.type === 'instruction');
+    
+    if (forms.length === 0 && instructions.length === 0) {
+content.innerHTML = `<div style="text-align:center; padding:40px;">
+    <img src="logo/folder.jpg" alt="folder" style="width: 67px; height: 64px; margin-bottom: 15px; opacity: 0.5;">
+    <br>
+    هیچ مدرکی برای این واحد یافت نشد
+</div>`;
+    } else {
+        let html = '<div style="display: flex; flex-direction: column; gap: 20px;">';
+        
+// فرم‌ها
+if (forms.length > 0) {
+    html += `
+    <div style="background: #f8fafc; border-radius: 20px; padding: 20px;">
+        <h4 style="color: #1e40af; margin-bottom: 15px; border-bottom: 2px solid #bfdbfe; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+            <img src="logo/form.jpg" alt="فرم" style="width: 45px; height: 40px;">
+            فرم‌ها (${forms.length})
+        </h4>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+    `;
+    forms.forEach(form => {
+        html += `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: white; border-radius: 50px; border: 1px solid #e2e8f0;">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                    <img src="logo/form.jpg" alt="form" style="width: 22px; height: 22px;">
+                    ${form.name}
+                </span>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="viewDocument('${form.file}')" style="background: #3b82f6; color: white; border: none; padding: 6px 12px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                        <img src="logo/view.jpg" alt="مشاهده" style="width: 20px; height: 20px;"> مشاهده
+                    </button>
+                    <button onclick="downloadDocument('${form.file}')" style="background: #10b981; color: white; border: none; padding: 6px 12px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                        <img src="logo/download.jpg" alt="دانلود" style="width: 20px; height: 20px;"> دانلود
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+    html += `</div></div>`;
+}
+        
+// دستورالعمل‌ها
+if (instructions.length > 0) {
+    html += `
+    <div style="background: #f8fafc; border-radius: 20px; padding: 20px;">
+        <h4 style="color: #1e40af; margin-bottom: 15px; border-bottom: 2px solid #bfdbfe; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+            <img src="logo/instruction.jpg" alt="دستورالعمل" style="width: 40px; height: 40px;">
+            دستورالعمل‌ها (${instructions.length})
+        </h4>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+    `;
+    instructions.forEach(inst => {
+        html += `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: white; border-radius: 50px; border: 1px solid #e2e8f0;">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                    <img src="logo/instruction.jpg" alt="instruction" style="width: 22px; height: 22px;">
+                    ${inst.name}
+                </span>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="viewDocument('${inst.file}')" style="background: #3b82f6; color: white; border: none; padding: 6px 12px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                        <img src="logo/view.jpg" alt="مشاهده" style="width: 20px; height: 20px;"> مشاهده
+                    </button>
+                    <button onclick="downloadDocument('${inst.file}')" style="background: #10b981; color: white; border: none; padding: 6px 12px; border-radius: 20px; cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                        <img src="logo/download.jpg" alt="دانلود" style="width: 20px; height: 20px;"> دانلود
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+    html += `</div></div>`;
+}
+        
+        html += `</div>`;
+        content.innerHTML = html;
+    }
+    
+    modal.style.display = 'block';
+    
+    // ========== اضافه کردن قابلیت بسته شدن ==========
+    // با کلیک روی دکمه بستن
+    const closeBtn = modal.querySelector('.modal-close');
+    if (closeBtn) {
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        };
+    }
+    
+    // با کلیک روی پس‌زمینه مودال
+    modal.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    };
+    // ========== پایان ==========
+}
+
+// بستن مودال
+function closeOrgDocsModal() {
+    document.getElementById('orgDocsModal').style.display = 'none';
+}
+
+// مشاهده فایل در مرورگر
+function viewDocument(fileUrl) {
+    window.open(fileUrl, '_blank');
+}
+
+// دانلود فایل
+function downloadDocument(fileUrl) {
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = fileUrl.split('/').pop();
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+
+
+
+
+function setLanguage(lang) {
+    currentLanguage = lang;
+    document.body.setAttribute('lang', lang);
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+        else btn.classList.remove('active');
+    });
+    
+    const headers = document.querySelectorAll('#pmTableHeader th');
+    const trans = translations[currentLanguage];
+    if (headers.length >= 9) {
+        headers[0].textContent = trans.project_name;
+        headers[1].textContent = trans.status;
+        headers[2].textContent = trans.location;
+        headers[3].textContent = trans.site_address;
+        headers[4].textContent = trans.employer;
+        headers[5].textContent = trans.contract_amount;
+        headers[6].textContent = trans.currency;
+        headers[7].textContent = trans.start_date;
+        headers[8].textContent = trans.end_date;
+    }
+    
+    const searchInput = document.getElementById('searchProjectManagement');
+    if (searchInput) searchInput.placeholder = trans.search_placeholder;
+    
+    renderProjectManagement();
+    updateStatusStats(); 
+}
+
+
+
+// نمایش نتایج جستجو
+function renderSearchResults(filtered, searchTerm) {
+    const tbody = document.getElementById('projectManagementList');
+    if (!tbody) return;
+    
+    tbody.innerHTML = '';
+    if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;">🔍 هیچ نتیجه‌ای برای "${searchTerm}" یافت نشد</td></tr>`;
+        return;
+    }
+    
+    filtered.forEach(project => {
+        let statusClass = '';
+        const statusText = project[`status_${currentLanguage}`];
+        if (statusText === 'جاری' || statusText === 'In Progress' || statusText === 'Выполняется') statusClass = 'status-current';
+        else if (statusText === 'پایان یافته' || statusText === 'Complete' || statusText === 'Завершенный') statusClass = 'status-completed';
+        else if (statusText === 'دوره گارانتی' || statusText === 'Warranty' || statusText === 'гарантия') statusClass = 'status-warranty';
+        else if (statusText === 'در حال ابلاغ' || statusText === 'Being communicated' || statusText === 'Ожидает утверждения') statusClass = 'status-tender';
+        
+        const displayAmount = formatAmount(project.contract_amount, currentLanguage);
+        const startDateFormatted = formatDateByLanguage(project.start_date, currentLanguage);
+        const endDateFormatted = formatDateByLanguage(project.end_date, currentLanguage);
+        const nameField = `project_name_${currentLanguage}`;
+        const locationField = `location_${currentLanguage}`;
+        const siteField = `site_address_${currentLanguage}`;
+        const employerField = `employer_${currentLanguage}`;
+        
+        tbody.innerHTML += `
+            <tr>
+                <td>${project[nameField] || '-'}${'<'}td>
+                <td><span class="status-badge ${statusClass}">${project[`status_${currentLanguage}`] || '-'}</span>${'<'}td>
+                <td>${project[locationField] || '-'}${'<'}td>
+                <td>${project[siteField] || '-'}${'<'}td>
+                <td>${project[employerField] || '-'}${'<'}td>
+                <td>${displayAmount}${'<'}td>
+                <td style="white-space: nowrap;">
+    ${(project.currency || '-').replace(/\[br\]/g, '<br>').split('<br>').map(line => `<div>${line}</div>`).join('')}
+</td>
+                <td>${startDateFormatted}${'<'}td>
+                <td>${endDateFormatted}${'<'}td>
+            </tr>
+        `;
+    });
+}
+
+    
+    // تابع خروجی اکسل برای مدیریت پروژه‌ها
+function exportToExcel() {
+    if (!projectManagementList || projectManagementList.length === 0) {
+        alert('❌ داده‌ای برای خروجی وجود ندارد!');
+        return;
+    }
+    
+    // ========== فیلتر کردن ردیف‌های معتبر ==========
+    const validProjects = projectManagementList.filter(project => {
+        // حذف ردیف‌های خالی یا بی‌مقدار
+        const nameField = `project_name_${currentLanguage}`;
+        const hasName = project[nameField] && project[nameField].trim() !== '';
+        const hasContract = project.contract_amount && project.contract_amount !== '' && project.contract_amount !== 'NaN';
+        return hasName || hasContract;
+    });
+    
+    if (validProjects.length === 0) {
+        alert('❌ داده‌ای برای خروجی وجود ندارد!');
+        return;
+    }
+    
+    console.log(`📊 کل ردیف‌ها: ${projectManagementList.length} | ردیف‌های معتبر: ${validProjects.length}`);
+    
+    const trans = translations[currentLanguage];
+    
+    const excelData = validProjects.map(project => {
+        let projectName = project[`project_name_${currentLanguage}`] || '';
+        let status = project[`status_${currentLanguage}`] || '';
+        let location = project[`location_${currentLanguage}`] || '';
+        let siteAddress = project[`site_address_${currentLanguage}`] || project.site_address_fa || '';
+        let employer = project[`employer_${currentLanguage}`] || '';
+        
+        // درمان مبلغ NaN
+        let contractAmount = project.contract_amount;
+        if (!contractAmount || contractAmount === 'NaN' || contractAmount === '') {
+            contractAmount = '';
+        } else {
+            contractAmount = Number(contractAmount).toLocaleString();
+        }
+        
+        let startDate = (currentLanguage === 'fa') ? (project.start_date_fa || project.start_date || '') : (project.start_date || '');
+        let endDate = (currentLanguage === 'fa') ? (project.end_date_fa || project.end_date || '') : (project.end_date || '');
+        
+        return {
+            [trans.project_name]: projectName,
+            [trans.status]: status,
+            [trans.location]: location,
+            [trans.site_address]: siteAddress,
+            [trans.employer]: employer,
+            [trans.contract_amount]: contractAmount,
+            [trans.currency]: project.currency || '',
+            [trans.start_date]: startDate,
+            [trans.end_date]: endDate
+        };
+    });
+    
+    const headers = Object.keys(excelData[0]);
+    const csvRows = [];
+    csvRows.push(headers.join(','));
+    
+    for (const row of excelData) {
+        const values = headers.map(header => {
+            let value = row[header] || '';
+            value = String(value).replace(/\n/g, ' ').replace(/\r/g, ' ');
+            if (value.includes(',') || value.includes('"')) {
+                value = `"${value.replace(/"/g, '""')}"`;
+            }
+            return value;
+        });
+        csvRows.push(values.join(','));
+    }
+    
+    const blob = new Blob(["\uFEFF" + csvRows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `project_management_${new Date().toLocaleDateString('fa-IR').replace(/\//g, '-')}.csv`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+    
+    alert(`✅ خروجی اکسل با ${validProjects.length} رکورد ذخیره شد! (از ${projectManagementList.length} رکورد کل)`);
+}
+
+
+
+    // تابع خروجی اکسل برای صورت وضعیت و تعدیل پروژه‌ها
+// ========== تابع مستقل برای خروجی اکسل صورت وضعیت و تعدیل ==========
+function exportWorkOrdersAndAdjustments() {
+    console.log("✅ خروجی صورت وضعیت و تعدیل");
+    
+    if (!projectsList || projectsList.length === 0) {
+        alert('❌ هیچ پروژه‌ای وجود ندارد!');
+        return;
+    }
+    
+    const exportRows = [];
+    
+    for (const project of projectsList) {
+        // صورت وضعیت‌ها
+        if (project.workOrders && project.workOrders.length > 0) {
+            for (const wo of project.workOrders) {
+                exportRows.push({
+                    "نام پروژه": project.name || '',
+                    "مبلغ قرارداد": project.contractAmount || '',
+                    "نوع ارز": project.currency || '',
+                    "نوع": "صورت وضعیت",
+                    "ردیف": wo.id || '',
+                    "از تاریخ": wo.fromDate || '',
+                    "تا تاریخ": wo.toDate || '',
+                    "مبلغ دوره": wo.amount || '',
+                    "مبلغ تجمعی": wo.cumulative || ''
+                });
+            }
+        }
+        
+        // تعدیل‌ها
+        if (project.adjustments && project.adjustments.length > 0) {
+            for (const adj of project.adjustments) {
+                exportRows.push({
+                    "نام پروژه": project.name || '',
+                    "مبلغ قرارداد": project.contractAmount || '',
+                    "نوع ارز": project.currency || '',
+                    "نوع": "تعدیل",
+                    "ردیف": adj.id || '',
+                    "از تاریخ": adj.fromDate || '',
+                    "تا تاریخ": adj.toDate || '',
+                    "مبلغ دوره": adj.amount || '',
+                    "مبلغ تجمعی": ''
+                });
+            }
+        }
+    }
+    
+    if (exportRows.length === 0) {
+        alert('❌ هیچ صورت وضعیت یا تعدیلی وجود ندارد!');
+        return;
+    }
+    
+    // ساخت CSV
+    const headers = Object.keys(exportRows[0]);
+    const csvRows = [headers.join(',')];
+    
+    for (const row of exportRows) {
+        const values = headers.map(h => {
+            let v = String(row[h] || '').replace(/,/g, ' ');
+            return `"${v}"`;
+        });
+        csvRows.push(values.join(','));
+    }
+    
+    // دانلود
+    const blob = new Blob(["\uFEFF" + csvRows.join('\n')], { type: 'text/csv;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `workorders_adjustments_${new Date().toLocaleDateString('fa-IR').replace(/\//g, '-')}.csv`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+    
+    alert(`✅ خروجی با ${exportRows.length} رکورد ذخیره شد!`);
+}
+
+function displayOrgUnits() {
+    const container = document.getElementById('orgUnits');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    orgUnitsList.forEach(unit => {
+        let iconHtml = '';
+        if (unit.icon && unit.icon !== '') {
+            iconHtml = `<img src="${unit.icon}" alt="${unit.name}" style="width: 100px; height: 100px; border-radius: 20px; object-fit: contain; margin-bottom: 15px;">`;
+        } else {
+            iconHtml = `<div style="font-size: 2.5rem; margin-bottom: 15px;">🏢</div>`;
+        }
+        
+        container.innerHTML += `
+            <div class="org-card" data-id="${unit.id}" data-name="${unit.name}">
+                ${iconHtml}
+                <h3>${unit.name}</h3>
+                <p class="badge-blue">مشاهده مستندات</p>
+            </div>
+        `;
+    });
+    
+    document.querySelectorAll('.org-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const id = card.dataset.id;
+            const name = card.dataset.name;
+            currentOrgUnit = id;
+            document.querySelectorAll('.org-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            
+            // باز کردن مودال به جای نمایش در صفحه
+            openOrgDocsModal(id, name);
+        });
+    });
+}
+
+// جستجو در واحدهای سازمانی
+function setupOrgSearch() {
+    const searchInput = document.getElementById('searchOrgUnit');
+    if (!searchInput) return;
+    
+    searchInput.addEventListener('keyup', function() {
+        const term = this.value.toLowerCase().trim();
+        const container = document.getElementById('orgUnits');
+        if (!container) return;
+        
+        if (term === "") {
+            // اگر جستجو خالی بود، همه رو نشون بده
+            displayOrgUnits();
+            return;
+        }
+        
+        // فیلتر کردن واحدها
+        const filteredUnits = orgUnitsList.filter(unit => 
+            unit.name && unit.name.toLowerCase().includes(term)
+        );
+        
+        // نمایش نتایج فیلتر شده
+        if (filteredUnits.length === 0) {
+            container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px;">🔍 هیچ واحدی یافت نشد</div>';
+            return;
+        }
+        
+        container.innerHTML = '';
+        filteredUnits.forEach(unit => {
+            let iconHtml = '';
+            if (unit.icon && unit.icon !== '') {
+                iconHtml = `<img src="${unit.icon}" alt="${unit.name}" style="width: 100px; height: 100px; border-radius: 20px; object-fit: contain; margin-bottom: 15px;">`;
+            } else {
+                iconHtml = `<div style="font-size: 2.5rem; margin-bottom: 15px;">🏢</div>`;
+            }
+            
+            container.innerHTML += `
+                <div class="org-card" data-id="${unit.id}" data-name="${unit.name}">
+                    ${iconHtml}
+                    <h3>${unit.name}</h3>
+                    <p class="badge-blue">مشاهده مستندات</p>
+                </div>
+            `;
+        });
+        
+        // اضافه کردن رویداد کلیک به کارت‌های جدید
+        document.querySelectorAll('#orgUnits .org-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.dataset.id;
+                const name = card.dataset.name;
+                currentOrgUnit = id;
+                document.querySelectorAll('.org-card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                openOrgDocsModal(id, name);
+            });
+        });
+    });
+}
+
+
+
+    function showSubSections(unitId) {
+        const container = document.getElementById('subSectionsContainer');
+        if (!container) return;
+        const unitDocs = documentsList.filter(doc => String(doc.unit_id) === String(unitId));
+        const forms = unitDocs.filter(doc => doc.type === 'form');
+        const instructions = unitDocs.filter(doc => doc.type === 'instruction');
+        
+        if (forms.length === 0 && instructions.length === 0) {
+            container.innerHTML = '<div class="sub-sections"><div style="text-align:center; padding:40px; background:white; border-radius:30px;">📂 هیچ مدرکی برای این واحد یافت نشد</div></div>';
+            return;
+        }
+        
+        container.innerHTML = `<div class="sub-sections"><div class="sub-card"><h4>📄 فرم‌ها</h4><div class="items-list" id="formsList"></div></div><div class="sub-card"><h4>📖 دستورالعمل‌ها</h4><div class="items-list" id="instructionsList"></div></div></div>`;
+        
+        const formsList = document.getElementById('formsList');
+        formsList.innerHTML = '';
+        forms.forEach(form => { formsList.innerHTML += `<a href="${form.file}" target="_blank" class="item-link"><span>📄 ${form.name}</span><span>🔗</span></a>`; });
+        
+        const instructionsList = document.getElementById('instructionsList');
+        instructionsList.innerHTML = '';
+        instructions.forEach(inst => { instructionsList.innerHTML += `<a href="${inst.file}" target="_blank" class="item-link"><span>📖 ${inst.name}</span><span>🔗</span></a>`; });
+    }
+
+    function renderEmployees(list) {
+        const tbody = document.getElementById('employeesList');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+        if (list.length === 0) { tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">هیچ نتیجه‌ای یافت نشد</td></tr>'; return; }
+        list.forEach(emp => {
+            tbody.innerHTML += `<tr>
+                <td>${emp.firstName || '-'}</td>
+                <td>${emp.lastName || '-'}</td>
+                <td>${emp.position || '-'}</td>
+                <td style="direction:ltr;text-align:center;font-weight:bold;color:#2563eb;">${emp.internalPhone || '-'}</td>
+            </tr>`;
+        });
+    }
+
+    function displayLinks() {
+    const container = document.getElementById('quickLinks');
+    if (!container) return;
+    container.innerHTML = '';
+    linksList.forEach(link => {
+        // این خط رو اضافه کن - تبدیل [br] به <br>
+        let displayTitle = link.title || '';
+        displayTitle = displayTitle.replace(/\[br\]/g, '<br>');
+        
+        let iconHtml = '';
+        if (link.icon && (link.icon.includes('.jpg') || link.icon.includes('.jpg') || link.icon.includes('.jpeg') || link.icon.includes('.svg') || link.icon.includes('.gif'))) {
+            iconHtml = `<img src="${link.icon}" alt="${link.title}" style="width: 60px; height: 60px; object-fit: contain;">`;
+        } else {
+            iconHtml = `<span style="font-size: 3rem;">${link.icon || '🔗'}</span>`;
+        }
+        
+        container.innerHTML += `
+            <a href="${link.url}" target="_blank" class="quick-link-card">
+                ${iconHtml}
+                <h4 style="white-space: normal; line-height: 1.4; text-align: center;">${displayTitle}</h4>
+            </a>
+        `;
+    });
+}
+
+function setupSearch() {
+    const searchInput = document.getElementById('searchEmployee');
+    if (!searchInput) return;
+    searchInput.addEventListener('keyup', function() {
+        const term = this.value.toLowerCase().trim();
+        const filtered = employeesList.filter(emp => 
+            (emp.firstName && emp.firstName.toLowerCase().includes(term)) ||
+            (emp.lastName && emp.lastName.toLowerCase().includes(term)) ||
+            (emp.position && emp.position.toLowerCase().includes(term)) ||
+            (emp.internalPhone && emp.internalPhone.toString().includes(term))
+        );
+        renderEmployees(filtered);
+    });
+}
+
+    function formatMoney(amount, currency) {
+        let formattedNumber = parseInt(amount).toLocaleString('fa-IR');
+        const currencySymbols = { "تومان": "تومان", "ریال": "ریال", "دلار": "دلار $", "تنگه": "تنگه ₸", "درام": "درام ֏" };
+        return `${formattedNumber} ${currencySymbols[currency] || currency}`;
+    }
+
+function displayProjects() {
+    const container = document.getElementById('projectsList');
+    if (!container) return;
+    container.innerHTML = '';
+    projectsList.forEach(project => {
+        // بررسی معتبر بودن مبلغ قرارداد
+        const contractAmount = parseInt(project.contractAmount);
+        const isValidAmount = project.contractAmount && 
+                              project.contractAmount !== "-" && 
+                              project.contractAmount !== "0" && 
+                              !isNaN(contractAmount) && 
+                              contractAmount > 0;
+        
+        let percentBarHtml = '';
+        let percent = 0;
+        
+        if (isValidAmount) {
+            const lastCumulative = project.workOrders.length > 0 ? parseInt(project.workOrders[project.workOrders.length-1].cumulative) : 0;
+            percent = (lastCumulative / contractAmount) * 100;
+            percentBarHtml = `<div class="percent-bar"><div class="percent-fill" style="width: ${Math.min(percent, 100)}%">${Math.round(percent)}%</div></div>`;
+        } else {
+            percentBarHtml = `<div class="percent-bar"><div class="percent-fill" style="width: 0%; background: #cbd5e1;">-</div></div>`;
+        }
+        
+        // تصویر پروژه
+        let imageHtml = '';
+        if (project.imageLink && project.imageLink !== "") {
+            imageHtml = `<div style="width: 250px; height: 300px; margin-bottom: 15px; border-radius: 16px; overflow: hidden;">
+                <img src="${project.imageLink}" alt="${project.name}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.parentElement.innerHTML='🏗️'; this.parentElement.style.display='flex'; this.parentElement.style.alignItems='center'; this.parentElement.style.justifyContent='center'; this.parentElement.style.fontSize='3rem'; this.parentElement.style.background='#e2e8f0';">
+            </div>`;
+        } else {
+            imageHtml = `<div style="width: 80px; height: 80px; margin-bottom: 15px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 3rem; background: #e2e8f0;">🏗️</div>`;
+        }
+        
+        // اسم پروژه با ارتفاع ثابت
+        container.innerHTML += `<div class="org-card project-card" data-name="${project.name}" style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-height: 480px;">
+    ${imageHtml}
+    <h3 style="margin: 10px 0; text-align: center; font-size: 1rem; width: 100%; word-break: break-word; line-height: 1.4;">${project.name}</h3>
+    <div style="width: 100%; margin-top: auto;">
+        <p style="margin: 15px 0; text-align: center; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+    <img src="logo/cost.jpg" alt="مبلغ" style="width: 20px; height: 20px;">
+    مبلغ قرارداد: ${formatMoney(project.contractAmount, project.currency)}</p>
+
+
+
+        <div style="width: 100%; margin: 15px 0;">${percentBarHtml}</div>
+        <p class="badge-blue" style="display: block; width: fit-content; margin: 20px auto 0 auto; text-align: center; padding: 8px 20px;">برای مشاهده کلیک کنید</p>
+    </div>
+</div>`;
+    });
+    
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', () => {
+            currentProject = projectsList.find(p => p.name === card.dataset.name);
+            openProjectModal();
+        });
+    });
+}
+
+function openProjectModal() {
+    const projectsSection = document.getElementById('projectsSection');
+    
+    // فقط اگر بخش صورت وضعیت و تعدیل فعال است
+    if (!projectsSection || !projectsSection.classList.contains('active')) {
+        return;
+    }
+    
+    if (!currentProject) {
+        console.error("پروژه ای انتخاب نشده است");
+        return;
+    }
+    
+    const modal = document.getElementById('projectModal');
+    if (!modal) return;
+    
+    document.getElementById('modalProjectTitle').textContent = currentProject.name;
+    modal.style.display = 'block';
+    modal.querySelector('.modal-content').style.width = '95%';
+modal.querySelector('.modal-content').style.maxWidth = '1600px';
+    
+    document.getElementById('statusBtn').onclick = () => showWorkOrders('status');
+    document.getElementById('adjustBtn').onclick = () => showWorkOrders('adjust');
+    
+    // پیش‌فرض: نمایش صورت وضعیت
+    showWorkOrders('status');
+}
+
+
+function setupProjectSearch() {
+    const searchInput = document.getElementById('searchProject');
+    if (!searchInput) return;
+    searchInput.addEventListener('keyup', function() {
+        const term = this.value.toLowerCase().trim();
+        let hasVisible = false;
+        
+        document.querySelectorAll('.project-card').forEach(card => {
+            const name = card.getAttribute('data-name').toLowerCase();
+            if (term === "" || name.includes(term)) {
+                card.style.display = 'flex';
+                card.style.opacity = '1';
+                hasVisible = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        const container = document.getElementById('projectsList');
+        const noResultMsg = document.getElementById('noProjectResult');
+        if (!hasVisible) {
+            if (!noResultMsg) {
+                const msg = document.createElement('div');
+                msg.id = 'noProjectResult';
+                msg.style.textAlign = 'center';
+                msg.style.padding = '40px';
+                msg.style.gridColumn = '1/-1';
+                msg.innerHTML = '🔍 هیچ پروژه‌ای با این جستجو یافت نشد';
+                container.appendChild(msg);
+            }
+        } else if (noResultMsg) {
+            noResultMsg.remove();
+        }
+    });
+}
+
+document.querySelector('.modal-close')?.addEventListener('click', () => { document.getElementById('projectModal').style.display = 'none'; });
+window.onclick = function(event) { if (event.target === document.getElementById('projectModal')) { document.getElementById('projectModal').style.display = 'none'; } };
+
+if (window.location.pathname.includes('dashboard.html')) {
+    if (localStorage.getItem('loggedIn') !== 'true') window.location.href = 'index.html';
+    document.getElementById('userNameDisplay').innerText = localStorage.getItem('username') || 'کاربر';
+
+// فیلتر کردن جدول بر اساس وضعیت
+function filterProjectsByStatus(statusText) {
+    const statusField = `status_${currentLanguage}`;
+    
+    let statusValue = statusText;
+    if (currentLanguage === 'en') {
+        const statusMap = {
+            'جاری': 'In Progress',
+            'پایان یافته': 'Complete',
+            'دوره گارانتی': 'Warranty',
+            'در حال ابلاغ': 'Being communicated'
+        };
+        statusValue = statusMap[statusText] || statusText;
+    } else if (currentLanguage === 'ru') {
+        const statusMap = {
+            'جاری': 'Выполняется',
+            'پایان یافته': 'Завершенный',
+            'دوره گارانتی': 'гарантия',
+            'در حال ابلاغ': 'Ожидает утверждения'
+        };
+        statusValue = statusMap[statusText] || statusText;
+    }
+    
+    const filtered = projectManagementList.filter(project => 
+        project[statusField] === statusValue
+    );
+    
+    renderFilteredProjects(filtered, statusText);
+    
+    // ========== اضافه کردن افکت رنگی به کارت‌ها ==========
+    // همه کارت‌ها را به حالت اول برگردان
+    document.querySelectorAll('.stat-card').forEach(card => {
+        card.style.opacity = '0.5';
+        card.style.transform = 'scale(0.98)';
+        card.style.transition = 'all 0.3s ease';
+    });
+    
+    // کارتی که کلیک شده را هایلایت کن
+    const activeCard = Array.from(document.querySelectorAll('.stat-card')).find(card => 
+        card.getAttribute('data-filter-status') === statusText
+    );
+    if (activeCard) {
+        activeCard.style.opacity = '1';
+        activeCard.style.transform = 'scale(1)';
+        activeCard.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
+    }
+    // ========== پایان ==========
+}
+
+
+// نمایش پروژه‌های فیلتر شده
+// نمایش پروژه‌های فیلتر شده
+function renderFilteredProjects(filtered, statusText) {
+    const tbody = document.getElementById('projectManagementList');
+    if (!tbody) return;
+    
+    tbody.innerHTML = '';
+    if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="10" style="text-align:center;">هیچ پروژه‌ای با وضعیت "${statusText}" یافت نشد<\/td><\/tr>`;
+        return;
+    }
+    
+    // ========== تعیین رنگ برای وضعیت فیلتر شده ==========
+    let filterColorClass = '';
+    if (statusText === 'جاری') filterColorClass = 'status-current';
+    else if (statusText === 'پایان یافته') filterColorClass = 'status-completed';
+    else if (statusText === 'دوره گارانتی') filterColorClass = 'status-warranty';
+    else if (statusText === 'در حال ابلاغ') filterColorClass = 'status-tender';
+    // ========== پایان ==========
+    
+    filtered.forEach(project => {
+        let statusClass = '';
+        const sText = project[`status_${currentLanguage}`];
+        if (sText === 'جاری' || sText === 'In Progress' || sText === 'Выполняется') statusClass = 'status-current';
+        else if (sText === 'پایان یافته' || sText === 'Complete' || sText === 'Завершенный') statusClass = 'status-completed';
+        else if (sText === 'دوره گارانتی' || sText === 'Warranty' || sText === 'гарантия') statusClass = 'status-warranty';
+        else if (sText === 'در حال ابلاغ' || sText === 'Being communicated' || sText === 'Ожидает утверждения') statusClass = 'status-tender';
+        
+        const displayAmount = formatAmount(project.contract_amount, currentLanguage);
+        
+        if (currentLanguage === 'fa') {
+            var startDateFormatted = project.start_date_fa || project.start_date || '-';
+            var endDateFormatted = project.end_date_fa || project.end_date || '-';
+            startDateFormatted = toPersianNumber(startDateFormatted);
+            endDateFormatted = toPersianNumber(endDateFormatted);
+        } else {
+            var startDateFormatted = formatDateByLanguage(project.start_date, currentLanguage);
+            var endDateFormatted = formatDateByLanguage(project.end_date, currentLanguage);
+        }
+        
+        tbody.innerHTML += `
+            <tr>
+                <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${project[`project_name_${currentLanguage}`] || '-'}<\/td>
+                <td style="white-space: nowrap;"><span class="status-badge ${statusClass}" style="background: ${getStatusColor(statusText)}; color: white;">${project[`status_${currentLanguage}`] || '-'}</span><\/td>
+                <td style="white-space: nowrap;">${project[`location_${currentLanguage}`] || '-'}<\/td>
+                <td style="white-space: nowrap;">${project[`site_address_${currentLanguage}`] || '-'}<\/td>
+                <td style="white-space: nowrap;">${project[`employer_${currentLanguage}`] || '-'}<\/td>
+                <td style="white-space: nowrap;">${displayAmount}<\/td>
+                <td style="white-space: nowrap;">
+                    ${(project.currency || '-').replace(/\[br\]/g, '<br>').split('<br>').map(line => `<div>${line}</div>`).join('')}
+                <\/td>
+                <td style="white-space: nowrap;">${startDateFormatted}<\/td>
+                <td style="white-space: nowrap;">${endDateFormatted}<\/td>
+            </tr>
+        `;
+    });
+    
+    // ========== هایلایت کارت‌های آمار ==========
+    document.querySelectorAll('.stat-card').forEach(card => {
+        card.style.opacity = '0.5';
+        card.style.transform = 'scale(0.98)';
+        card.style.transition = 'all 0.3s ease';
+    });
+    
+    const activeCard = Array.from(document.querySelectorAll('.stat-card')).find(card => 
+        card.getAttribute('data-filter-status') === statusText
+    );
+    if (activeCard) {
+        activeCard.style.opacity = '1';
+        activeCard.style.transform = 'scale(1)';
+        activeCard.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
+    }
+    // ========== پایان ==========
+}
+
+// ========== تابع کمکی برای دریافت رنگ وضعیت ==========
+function getStatusColor(statusText) {
+    switch(statusText) {
+        case 'جاری': return 'status-current';
+        case 'پایان یافته': return 'status-completed';
+        case 'دوره گارانتی': return 'status-warranty';
+        case 'در حال ابلاغ': return 'status-tender';
+        default: return '';
+    }
+}
+// ========== پایان ==========
+
+// جستجو
+                function setupProjectManagementSearch() {
+                    const searchInput = document.getElementById('searchProjectManagement');
+                    if (!searchInput) return;
+                    
+                    searchInput.addEventListener('keyup', function() {
+                        const term = this.value.toLowerCase().trim();
+                        
+                        if (term === "") {
+                            renderProjectManagement();
+                            return;
+                        }
+                        
+                        const nameField = `project_name_${currentLanguage}`;
+                        const employerField = `employer_${currentLanguage}`;
+                        const locationField = `location_${currentLanguage}`;
+                        
+                        const filtered = projectManagementList.filter(project => 
+                            (project[nameField] && project[nameField].toLowerCase().includes(term)) ||
+                            (project[employerField] && project[employerField].toLowerCase().includes(term)) ||
+                            (project[locationField] && project[locationField].toLowerCase().includes(term))
+                        );
+                        
+                        const tbody = document.getElementById('projectManagementList');
+                        if (!tbody) return;
+                        
+                        tbody.innerHTML = '';
+                        if (filtered.length === 0) {
+                            tbody.innerHTML = `</tr><td colspan="9" style="text-align:center;">🔍 هیچ نتیجه‌ای برای "${term}" یافت نشد<\/td><\/tr>`;
+                            return;
+                        }
+                        
+                        filtered.forEach(project => {
+                            let statusClass = '';
+                            const sText = project[`status_${currentLanguage}`];
+                            if (sText === 'جاری' || sText === 'In Progress' || sText === 'Выполняется') statusClass = 'status-current';
+                            else if (sText === 'پایان یافته' || sText === 'Complete' || sText === 'Завершенный') statusClass = 'status-completed';
+                            else if (sText === 'دوره گارانتی' || sText === 'Warranty' || sText === 'гарантия') statusClass = 'status-warranty';
+                            else if (sText === 'در حال ابلاغ' || sText === 'Being communicated' || sText === 'Ожидает утверждения') statusClass = 'status-tender';
+                            
+                        const displayAmount = formatAmount(project.contract_amount, currentLanguage);
+
+                let startDateFormatted, endDateFormatted;
+                if (currentLanguage === 'fa') {
+                    // برای فارسی: از ستون شمسی استفاده کن
+                    startDateFormatted = project.start_date_fa || project.start_date || '-';
+                    endDateFormatted = project.end_date_fa || project.end_date || '-';
+                    startDateFormatted = toPersianNumber(startDateFormatted);
+                    endDateFormatted = toPersianNumber(endDateFormatted);
+                } else {
+                    // برای انگلیسی و روسی: از ستون میلادی استفاده کن
+                    startDateFormatted = formatDateByLanguage(project.start_date, currentLanguage);
+                    endDateFormatted = formatDateByLanguage(project.end_date, currentLanguage);
+                }
+                            
+                            tbody.innerHTML += `
+                                <tr>
+                                    <td style="white-space: nowrap;">${project[nameField] || '-'}<\/td>
+                                    <td style="white-space: nowrap;"><span class="status-badge ${statusClass}">${project[`status_${currentLanguage}`] || '-'}</span><\/td>
+                                    <td style="white-space: nowrap;">${project[locationField] || '-'}<\/td>
+                                    <td style="white-space: nowrap;">${project[`site_address_${currentLanguage}`] || project.site_address_fa || '-'}</span><\/td>
+                                    <td style="white-space: nowrap;">${project[employerField] || '-'}<\/td>
+                                    <td style="white-space: nowrap;">${displayAmount}<\/td>
+                                    <td style="white-space: nowrap;">
+                    ${(project.currency || '-').replace(/\[br\]/g, '<br>').split('<br>').map(line => `<div style="white-space: nowrap;">${line}</div>`).join('')}
+                </td>
+                                    <td style="white-space: nowrap;">${startDateFormatted}<\/td>
+                                    <td style="white-space: nowrap;">${endDateFormatted}<\/td>
+                                </tr>
+                            `;
+                        });
+                    });
+                }
+
+function applyAccess() {
+    const storedAccess = localStorage.getItem('userAccess');
+    if (!storedAccess) return;
+    
+    const userAccess = JSON.parse(storedAccess);
+    console.log("اعمال دسترسی:", userAccess);
+    
+    const menuOrg = document.querySelector('.nav-item[data-section="org"]');
+    const menuEmployees = document.querySelector('.nav-item[data-section="employees"]');
+    const menuProjects = document.querySelector('.nav-item[data-section="projects"]');
+    const menuLinks = document.querySelector('.nav-item[data-section="links"]');
+    const menuPM = document.querySelector('.nav-item[data-section="projectmanagement"]');
+    const menuChat = document.querySelector('.nav-item[data-section="chat"]');
+    const menuCertificates = document.querySelector('.nav-item[data-section="certificates"]');
+    
+    if (menuOrg) menuOrg.style.display = userAccess.org === false ? 'none' : 'flex';
+    if (menuEmployees) menuEmployees.style.display = userAccess.employees === false ? 'none' : 'flex';
+    if (menuProjects) menuProjects.style.display = userAccess.projects === false ? 'none' : 'flex';
+    if (menuLinks) menuLinks.style.display = userAccess.links === false ? 'none' : 'flex';
+    if (menuPM) menuPM.style.display = userAccess.projectmanagement === false ? 'none' : 'flex';
+    if (menuChat) menuChat.style.display = userAccess.chat === false ? 'none' : 'flex';
+    if (menuCertificates) menuCertificates.style.display = userAccess.certificates === false ? 'none' : 'flex';
+    
+    console.log("گواهینامه:", userAccess.certificates ? "نمایش" : "مخفی");
+}
+
+
+    (async function init() {
+        await loadAllData();
+        await loadProjectsFromCSV();
+        await loadProjectManagement();
+        await loadCertificates();
+        setupCertificateSearch();
+        setupCertificateFilters();
+        displayOrgUnits();
+        setupOrgSearch();
+        renderEmployees(employeesList);
+        displayLinks();
+        setupSearch();
+        displayProjects();
+        setupProjectSearch();
+        setupProjectManagementSearch();
+        setLanguage('fa');
+         applyAccess();
+// اطمینان از نمایش مدیریت پروژه‌ها
+document.getElementById('projectmanagementSection').classList.add('active');
+document.getElementById('orgSection').classList.remove('active');
+document.getElementById('employeesSection').classList.remove('active');
+document.getElementById('projectsSection').classList.remove('active');
+document.getElementById('linksSection').classList.remove('active');
+
+document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+document.querySelector('.nav-item[data-section="projectmanagement"]').classList.add('active');
+
+
+
+
+ // اضافه کردن رویداد کلیک به کارت‌های آمار برای فیلتر کردن
+document.querySelectorAll('.stat-card').forEach(card => {
+    card.addEventListener('click', function() {
+        const statusText = this.getAttribute('data-filter-status');
+        if (statusText) {
+            filterProjectsByStatus(statusText);
+        }
+    });
+});
+
+// قرار دادن تابع reset در scope global
+window.resetProjectFilter = resetProjectFilter;
+        
+
+// ========== پایان کد دسترسی‌ها ==========
+        
+        const exportBtn = document.getElementById('exportExcelBtn');
+        if (exportBtn) {
+            exportBtn.addEventListener('click', exportToExcel);
+        }
+        
+        const exportProjectsBtn = document.getElementById('exportProjectsExcelBtn');
+        if (exportProjectsBtn) {
+            exportProjectsBtn.addEventListener('click', exportProjectsToExcel);
+        }
+    })();
+    
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = {
+        certificates: document.getElementById('certificatesSection'),
+        org: document.getElementById('orgSection'),
+        employees: document.getElementById('employeesSection'),
+        projects: document.getElementById('projectsSection'),
+        links: document.getElementById('linksSection'),
+        projectmanagement: document.getElementById('projectmanagementSection')
+    };
+    
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            navItems.forEach(nav => nav.classList.remove('active'));
+            this.classList.add('active');
+            Object.values(sections).forEach(s => s?.classList.remove('active'));
+            sections[this.getAttribute('data-section')]?.classList.add('active');
+            
+            if (window.innerWidth <= 768) {
+                document.getElementById('sidebar')?.classList.remove('open');
+            }
+        });
+    });
+    
+    document.getElementById('logoutBtn')?.addEventListener('click', () => {
+    localStorage.clear();
+    window.location.href = 'logout.html';
+});
+    document.getElementById('menuToggle')?.addEventListener('click', () => { document.getElementById('sidebar')?.classList.toggle('open'); });
+
+
+
+
+// تبدیل تاریخ میلادی به شمسی با پشتیبانی از فرمت‌های مختلف
+function formatDateByLanguage(dateString, language) {
+    if (!dateString || dateString === "" || dateString === "-") return "-";
+    
+    // فقط برای زبان فارسی تبدیل به شمسی کن
+    if (language === 'fa') {
+        try {
+            let year, month, day;
+            
+            if (dateString.includes('/')) {
+                let parts = dateString.split('/');
+                if (parts.length === 3) {
+                    month = parseInt(parts[0]);
+                    day = parseInt(parts[1]);
+                    year = parseInt(parts[2]);
+                    if (year < 1900) year += 2000;
+                    
+                    const [py, pm, pd] = gregorianToPersian(year, month, day);
+                    const monthStr = pm < 10 ? '0' + pm : pm;
+                    const dayStr = pd < 10 ? '0' + pd : pd;
+                    return `${toPersianNumber(py)}/${toPersianNumber(monthStr)}/${toPersianNumber(dayStr)}`;
+                }
+            }
+            
+            if (dateString.includes('-')) {
+                let parts = dateString.split('-');
+                if (parts.length === 3) {
+                    year = parseInt(parts[0]);
+                    month = parseInt(parts[1]);
+                    day = parseInt(parts[2]);
+                    
+                    const [py, pm, pd] = gregorianToPersian(year, month, day);
+                    const monthStr = pm < 10 ? '0' + pm : pm;
+                    const dayStr = pd < 10 ? '0' + pd : pd;
+                    return `${toPersianNumber(py)}/${toPersianNumber(monthStr)}/${toPersianNumber(dayStr)}`;
+                }
+            }
+            
+            return dateString;
+        } catch (error) {
+            return dateString;
+        }
+    }
+    
+    // انگلیسی و روسی: تبدیل به فرمت YYYY/MM/DD با اعداد انگلیسی
+    try {
+        let year, month, day;
+        
+        if (dateString.includes('/')) {
+            let parts = dateString.split('/');
+            if (parts.length === 3) {
+                month = parseInt(parts[0]);
+                day = parseInt(parts[1]);
+                year = parseInt(parts[2]);
+                if (year < 1900) year += 2000;
+                // برگرداندن با اعداد انگلیسی (بدون تبدیل به فارسی)
+                return `${year}/${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}`;
+            }
+        }
+        
+        if (dateString.includes('-')) {
+            let parts = dateString.split('-');
+            if (parts.length === 3) {
+                year = parts[0];
+                month = parts[1];
+                day = parts[2];
+                // برگرداندن با اعداد انگلیسی
+                return `${year}/${month}/${day}`;
+            }
+        }
+        
+        // اگر تاریخ به فرمت دیگری بود، همان را برگردان (اما اعداد انگلیسی)
+        return dateString;
+    } catch (error) {
+        return dateString;
+    }
+}
+
+
+
+
+// تبدیل اعداد انگلیسی به فارسی
+// تبدیل اعداد انگلیسی به فارسی (فقط برای زبان فارسی)
+function toPersianNumber(input) {
+    if (input === undefined || input === null) return "";
+    const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    let str = input.toString();
+    let result = "";
+    for (let i = 0; i < str.length; i++) {
+        let char = str[i];
+        if (char >= '0' && char <= '9') {
+            result += persianDigits[parseInt(char)];
+        } else {
+            result += char;
+        }
+    }
+    return result;
+}
+
+// تبدیل تاریخ میلادی به شمسی
+function gregorianToPersian(year, month, day) {
+    const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    
+    function isGregorianLeap(y) {
+        return (y % 4 === 0 && y % 100 !== 0) || (y % 400 === 0);
+    }
+    
+    let dayOfYear = day;
+    for (let i = 0; i < month - 1; i++) {
+        dayOfYear += daysInMonth[i];
+    }
+    if (isGregorianLeap(year) && month > 2) dayOfYear++;
+    
+    let daysSince1970 = (year - 1970) * 365 + dayOfYear - 1;
+    for (let y = 1970; y < year; y++) {
+        if (isGregorianLeap(y)) daysSince1970++;
+    }
+    
+    let persianYear = 1348;
+    let persianMonth = 10;
+    let persianDay = 11;
+    persianDay += daysSince1970;
+    
+    const persianDaysInMonth = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29];
+    
+    function isPersianLeap(y) {
+        const remainders = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 29, 30, 31, 32];
+        return remainders.includes(y % 33);
+    }
+    
+    let currentMonthDays = persianDaysInMonth[persianMonth - 1];
+    if (persianMonth === 12 && isPersianLeap(persianYear)) currentMonthDays = 30;
+    
+    while (persianDay > currentMonthDays) {
+        persianDay -= currentMonthDays;
+        persianMonth++;
+        if (persianMonth > 12) {
+            persianMonth = 1;
+            persianYear++;
+        }
+        currentMonthDays = persianDaysInMonth[persianMonth - 1];
+        if (persianMonth === 12 && isPersianLeap(persianYear)) currentMonthDays = 30;
+    }
+    
+    return [persianYear, persianMonth, persianDay];
+}
+
+// نمایش تاریخ بر اساس زبان
+function formatDateByLanguage(dateString, language) {
+    if (!dateString || dateString === "" || dateString === "-") return "-";
+    
+    if (language === 'fa') {
+        try {
+            let year, month, day;
+            
+            if (dateString.includes('/')) {
+                let parts = dateString.split('/');
+                if (parts.length === 3) {
+                    month = parseInt(parts[0]);
+                    day = parseInt(parts[1]);
+                    year = parseInt(parts[2]);
+                    if (year < 1900) year += 2000;
+                    
+                    const [py, pm, pd] = gregorianToPersian(year, month, day);
+                    const monthStr = pm < 10 ? '0' + pm : pm;
+                    const dayStr = pd < 10 ? '0' + pd : pd;
+                    return `${toPersianNumber(py)}/${toPersianNumber(monthStr)}/${toPersianNumber(dayStr)}`;
+                }
+            }
+            
+            if (dateString.includes('-')) {
+                let parts = dateString.split('-');
+                if (parts.length === 3) {
+                    year = parseInt(parts[0]);
+                    month = parseInt(parts[1]);
+                    day = parseInt(parts[2]);
+                    
+                    const [py, pm, pd] = gregorianToPersian(year, month, day);
+                    const monthStr = pm < 10 ? '0' + pm : pm;
+                    const dayStr = pd < 10 ? '0' + pd : pd;
+                    return `${toPersianNumber(py)}/${toPersianNumber(monthStr)}/${toPersianNumber(dayStr)}`;
+                }
+            }
+            
+            return dateString;
+        } catch (error) {
+            return dateString;
+        }
+    }
+    
+    // انگلیسی و روسی: فرمت YYYY/MM/DD
+    try {
+        let year, month, day;
+        
+        if (dateString.includes('/')) {
+            let parts = dateString.split('/');
+            if (parts.length === 3) {
+                month = parseInt(parts[0]);
+                day = parseInt(parts[1]);
+                year = parseInt(parts[2]);
+                if (year < 1900) year += 2000;
+                return `${year}/${month < 10 ? '0' + month : month}/${day < 10 ? '0' + day : day}`;
+            }
+        }
+        
+        if (dateString.includes('-')) {
+            let parts = dateString.split('-');
+            if (parts.length === 3) {
+                year = parts[0];
+                month = parts[1];
+                day = parts[2];
+                return `${year}/${month}/${day}`;
+            }
+        }
+        
+        return dateString;
+    } catch (error) {
+        return dateString;
+    }
+}
+
+// نمایش مبلغ بر اساس زبان
+function formatAmount(amount, language) {
+    if (!amount || amount === "") return "-";
+    
+    // بررسی وجود [br]
+    if (amount.toString().includes('[br]')) {
+        let parts = amount.toString().split('[br]');
+        let result = '';
+        for (let i = 0; i < parts.length; i++) {
+            let cleanAmount = parts[i].replace(/,/g, '');
+            let num = parseFloat(cleanAmount);
+            if (!isNaN(num)) {
+                const formatted = num.toLocaleString('en-US');
+                if (language === 'fa') {
+                    result += toPersianNumber(formatted);
+                } else {
+                    result += formatted;
+                }
+            } else {
+                result += parts[i];
+            }
+            if (i < parts.length - 1) result += '<br>';
+        }
+        return result;
+    }
+    
+    let cleanAmount = amount.toString().replace(/,/g, '');
+    let num = parseFloat(cleanAmount);
+    if (isNaN(num)) return amount;
+    
+    const formatted = num.toLocaleString('en-US');
+    
+    if (language === 'fa') {
+        return toPersianNumber(formatted);
+    }
+    
+    return formatted;
+}
+
+
+// تاریخ و ساعت
+function updateDateTime() {
+    const now = new Date();
+    
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    
+    // تبدیل ساعت به اعداد فارسی
+    const timeString = `${toPersianNumber(hours)}:${toPersianNumber(minutes)}:${toPersianNumber(seconds)}`;
+    
+    const days = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'];
+    const dayName = days[now.getDay()];
+    
+    // محاسبه تاریخ شمسی...
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const day = now.getDate();
+    
+    let persianYear = 1405;
+    let persianMonth = 3;
+    let persianDay = 1;
+    
+    const baseDate = new Date(2026, 4, 22);
+    const diffDays = Math.floor((now - baseDate) / (1000 * 60 * 60 * 24));
+    
+    persianDay += diffDays;
+    
+    while (persianDay > 31) {
+        persianDay -= 31;
+        persianMonth++;
+        if (persianMonth > 12) {
+            persianMonth = 1;
+            persianYear++;
+        }
+    }
+    
+    if (persianDay < 1) {
+        persianMonth--;
+        if (persianMonth < 1) {
+            persianMonth = 12;
+            persianYear--;
+        }
+        persianDay = 31 + persianDay;
+    }
+    
+    const dateString = `${toPersianNumber(persianYear)}/${toPersianNumber(persianMonth < 10 ? '0' + persianMonth : persianMonth)}/${toPersianNumber(persianDay < 10 ? '0' + persianDay : persianDay)}`;
+    
+    document.getElementById('persianDate').textContent = `${dayName}، ${dateString}`;
+    document.getElementById('currentTime').textContent = timeString;
+}
+
+// اجرای تاریخ و ساعت
+updateDateTime();
+setInterval(updateDateTime, 1000);
+}
+
+
+// تغییر حالت شب و روز
+const themeToggle = document.getElementById('themeToggleBtn');
+if (themeToggle) {
+    // بررسی ذخیره شده در localStorage
+     if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (themeIcon) themeIcon.src = 'logo/moon.jpg';
+    }
+    
+    themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+            if (themeIcon) themeIcon.src = 'logo/moon.jpg';
+        } else {
+            localStorage.setItem('theme', 'light');
+            if (themeIcon) themeIcon.src = 'logo/sun.jpg';
+        }
+    });
+
+function showWorkOrders(type) {
+    const container = document.getElementById('modalDataDisplay');
+    if (!container) return;
+    
+    if (!currentProject) {
+        container.innerHTML = `<div style="text-align:center; padding:40px;">پروژه ای انتخاب نشده است</div>`;
+        return;
+    }
+    
+    const currency = currentProject.currency || "تومان";
+    
+    if (type === 'status') {
+        const workOrders = currentProject.workOrders || [];
+        if (workOrders.length === 0) {
+            container.innerHTML = `<div style="text-align:center; padding:40px;">📋 هیچ صورت وضعیتی ثبت نشده است</div>`;
+            return;
+        }
+        
+        // ساخت جدول با استایل مناسب
+let tableHtml = `
+    <div style="overflow-y: auto; max-height: 450px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+            <thead>
+                <tr>
+                    <th style="padding: 1px; text-align: center; background: #f1f5f9; position: sticky; top: 0; z-index: 10;">ردیف</th>
+                    <th style="padding: 12px; text-align: center; background: #f1f5f9; position: sticky; top: 0; z-index: 10;">نوع کارکرد</th>
+                    <th style="padding: 12px; text-align: center; background: #f1f5f9; position: sticky; top: 0; z-index: 10;">از تاریخ</th>
+                    <th style="padding: 12px; text-align: center; background: #f1f5f9; position: sticky; top: 0; z-index: 10;">تا تاریخ</th>
+                    <th style="padding: 12px; text-align: center; background: #f1f5f9; position: sticky; top: 0; z-index: 10;">مبلغ دوره</th>
+                    <th style="padding: 12px; text-align: center; background: #f1f5f9; position: sticky; top: 0; z-index: 10;">مبلغ تجمعی</th>
+                </tr>
+            </thead>
+            <tbody>
+`;
+
+        workOrders.forEach((wo, idx) => {
+            // فرمت اعداد با toLocaleString
+            let amountFormatted = parseInt(wo.amount).toLocaleString('fa-IR');
+            let cumulativeFormatted = parseInt(wo.cumulative).toLocaleString('fa-IR');
+            
+            tableHtml += `
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td style="padding: 10px; text-align: center;">${wo.id || idx + 1}</td>
+                    <td style="padding: 10px; text-align: center;">${wo.type || '-'}</td>
+                    <td style="padding: 10px; text-align: center;">${wo.fromDate || '-'}</td>
+                    <td style="padding: 10px; text-align: center;">${wo.toDate || '-'}</td>
+                    <td style="padding: 10px; text-align: center;">${amountFormatted} ${currency}</td>
+                    <td style="padding: 10px; text-align: center; font-weight: bold; color: #2563eb;">${cumulativeFormatted} ${currency}</td>
+                </tr>
+            `;
+        });
+        
+        const lastCumulative = workOrders.length > 0 ? parseInt(workOrders[workOrders.length-1].cumulative) : 0;
+        const contractAmount = parseInt(currentProject.contractAmount) || 0;
+        const percentComplete = contractAmount > 0 ? (lastCumulative / contractAmount) * 100 : 0;
+        
+        const isDarkMode = document.body.classList.contains('dark-mode');
+
+
+
+tableHtml += `
+                    </tbody>
+                </table>
+            </div>
+            <div style="margin-top: 20px; padding: 18px; background: ${isDarkMode ? '#1e293b' : '#f0f9ff'}; border-radius: 20px; border: 1px solid ${isDarkMode ? '#334155' : '#e0f2fe'};">
+                <p style="color: ${isDarkMode ? '#e2e8f0' : '#1e293b'}; margin: 8px 0; display: flex; align-items: center; gap: 8px;">
+    <img src="logo/chart.jpg" alt="chart" style="width: 35px; height: 35px;">
+    <strong>جمع کل مبلغ قرارداد:</strong> ${contractAmount.toLocaleString('fa-IR')} ${currency}
+</p>
+<p style="color: ${isDarkMode ? '#e2e8f0' : '#1e293b'}; margin: 8px 0; display: flex; align-items: center; gap: 8px;">
+    <img src="logo/progress.jpg" alt="progress" style="width: 35px; height: 35px;">
+    <strong>درصد پیشرفت:</strong> ${Math.round(percentComplete)}%
+</p>
+<p style="color: ${isDarkMode ? '#e2e8f0' : '#1e293b'}; margin: 40px 0; display: flex; align-items: center; gap: 8px;">
+    <img src="logo/remain.jpg" alt="remain" style="width: 35px; height: 35px;">
+    <strong>مبلغ باقیمانده:</strong> ${(contractAmount - lastCumulative).toLocaleString('fa-IR')} ${currency}
+</p>
+`;
+        
+        container.innerHTML = tableHtml;
+        
+} else {
+    const adjustments = currentProject.adjustments || [];
+    if (adjustments.length === 0) {
+        container.innerHTML = `<div style="text-align:center; padding:40px;">📝 هیچ تعدیلی ثبت نشده است</div>`;
+        return;
+    }
+    
+let tableHtml = `
+    <div style="overflow-y: auto; max-height: 500px; position: relative;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+            <thead>
+                <tr style="background: #f1f5f9; position: sticky; top: 0; z-index: 10;">
+                    <th style="padding: 12px; text-align: center; background: #f1f5f9;">ردیف</th>
+                    <th style="padding: 12px; text-align: center; background: #f1f5f9;">نوع کارکرد</th>
+                    <th style="padding: 12px; text-align: center; background: #f1f5f9;">از تاریخ</th>
+                    <th style="padding: 12px; text-align: center; background: #f1f5f9;">تا تاریخ</th>
+                    <th style="padding: 12px; text-align: center; background: #f1f5f9;">مبلغ دوره</th>
+                    <th style="padding: 12px; text-align: center; background: #f1f5f9;">مبلغ تجمعی</th>
+                </tr>
+            </thead>
+            <tbody>
+`;
+    
+    let cumulative = 0;
+    
+    adjustments.forEach((adj, idx) => {
+        let amount = parseInt(adj.amount) || 0;
+        cumulative += amount;
+        
+        let amountFormatted = amount.toLocaleString('fa-IR');
+        let cumulativeFormatted = cumulative.toLocaleString('fa-IR');
+        
+        tableHtml += `
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+                <td style="padding: 10px; text-align: center;">${idx + 1}</td>
+                <td style="padding: 10px; text-align: center;">${adj.type || '-'}</td>
+                <td style="padding: 10px; text-align: center;">${adj.fromDate || '-'}</td>
+                <td style="padding: 10px; text-align: center;">${adj.toDate || '-'}</td>
+                <td style="padding: 10px; text-align: center;">${amountFormatted}</td>
+                <td style="padding: 10px; text-align: center; font-weight: bold; color: #2563eb;">${cumulativeFormatted}</td>
+            </tr>
+        `;
+    });
+    
+    tableHtml += `
+                </tbody>
+            </table>
+        </div>
+    `;
+    
+    container.innerHTML = tableHtml;
+}}
+
+// ========== کد دسترسی‌ها (نسخه نهایی) ==========
+// دریافت دسترسی‌ها
+let userAccess = { org: true, employees: true, projects: true, links: true, projectmanagement: true, chat: true, certificates: true };
+
+try {
+    const storedAccess = localStorage.getItem('userAccess');
+    console.log("storedAccess از localStorage:", storedAccess);
+    
+    if (storedAccess) {
+        userAccess = JSON.parse(storedAccess);
+        
+        // تبدیل مقادیر به boolean صحیح
+        userAccess.org = (userAccess.org === true || userAccess.org === 'true' || userAccess.org === 'TRUE');
+        userAccess.employees = (userAccess.employees === true || userAccess.employees === 'true' || userAccess.employees === 'TRUE');
+        userAccess.projects = (userAccess.projects === true || userAccess.projects === 'true' || userAccess.projects === 'TRUE');
+        userAccess.links = (userAccess.links === true || userAccess.links === 'true' || userAccess.links === 'TRUE');
+        userAccess.projectmanagement = (userAccess.projectmanagement === true || userAccess.projectmanagement === 'true' || userAccess.projectmanagement === 'TRUE');
+userAccess.chat = (userAccess.chat === true || userAccess.chat === 'true' || userAccess.chat === 'TRUE');
+    }
+} catch(e) {
+    console.error("خطا:", e);
+}
+
+console.log("دسترسی نهایی:", userAccess);
+
+// پیدا کردن منوها
+const menuOrg = document.querySelector('.nav-item[data-section="org"]');
+const menuEmployees = document.querySelector('.nav-item[data-section="employees"]');
+const menuProjects = document.querySelector('.nav-item[data-section="projects"]');
+const menuLinks = document.querySelector('.nav-item[data-section="links"]');
+const menuPM = document.querySelector('.nav-item[data-section="projectmanagement"]');
+const menuChat = document.querySelector('.nav-item[data-section="chat"]');
+const menuCertificates = document.querySelector('.nav-item[data-section="certificates"]');
+
+// مخفی کردن منوها بر اساس دسترسی
+if (menuOrg && userAccess.org === false) {
+    menuOrg.style.display = 'none';
+    console.log("منوی واحدهای سازمانی مخفی شد");
+}
+if (menuEmployees && userAccess.employees === false) menuEmployees.style.display = 'none';
+if (menuProjects && userAccess.projects === false) menuProjects.style.display = 'none';
+if (menuLinks && userAccess.links === false) menuLinks.style.display = 'none';
+if (menuPM && userAccess.projectmanagement === false) menuPM.style.display = 'none';
+if (menuChat && userAccess.chat === false) menuChat.style.display = 'none';
+if (menuCertificates && userAccess.certificates === false) menuCertificates.style.display = 'none';
+
+// پیدا کردن اولین منوی قابل مشاهده
+const allMenus = [menuOrg, menuEmployees, menuProjects, menuLinks, menuPM, menuCertificates];
+const firstVisible = allMenus.find(menu => menu && menu.style.display !== 'none');
+
+if (firstVisible) {
+    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+    firstVisible.classList.add('active');
+    
+    const sectionName = firstVisible.getAttribute('data-section');
+    const sections = {
+        certificates: document.getElementById('certificatesSection'), 
+        org: document.getElementById('orgSection'),
+        employees: document.getElementById('employeesSection'),
+        projects: document.getElementById('projectsSection'),
+        links: document.getElementById('linksSection'),
+        projectmanagement: document.getElementById('projectmanagementSection')
+        
+    };
+    
+    Object.values(sections).forEach(s => s?.classList.remove('active'));
+    if (sections[sectionName]) sections[sectionName].classList.add('active');
+}
+
+
+
+
+
+
+
+
+function isDateExpired(endDate) {
+    if (!endDate || endDate === '-') return false;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const end = persianToGregorian(endDate);
+    return end < today;
+}
+
+
+
+function setupCertificateSearch() {
+    const searchInput = document.getElementById('searchCertificate');
+    if (!searchInput) return;
+    searchInput.addEventListener('keyup', function() {
+        renderCertificates();
+    });
+}
+
+
+}
+
+function setupCertificateFilters() {
+    const filterAll = document.getElementById('filterAllCertificates');
+    const filterValid = document.getElementById('filterValidCertificates');
+    const filterExpired = document.getElementById('filterExpiredCertificates');
+    
+    if (!filterAll || !filterValid || !filterExpired) {
+        console.log("⚠️ دکمه‌های فیلتر پیدا نشدند");
+        return;
+    }
+    
+    const updateButtonStyle = (activeFilter) => {
+        const allBtn = document.getElementById('filterAllCertificates');
+        const validBtn = document.getElementById('filterValidCertificates');
+        const expiredBtn = document.getElementById('filterExpiredCertificates');
+        
+        if (allBtn) {
+            if (activeFilter === 'all') {
+                allBtn.style.background = 'linear-gradient(135deg, #3b82f6, #2563eb)';
+                allBtn.style.color = 'white';
+            } else {
+                allBtn.style.background = '#e2e8f0';
+                allBtn.style.color = '#1e293b';
+            }
+        }
+        
+        if (validBtn) {
+            if (activeFilter === 'valid') {
+                validBtn.style.background = 'linear-gradient(135deg, #3b82f6, #2563eb)';
+                validBtn.style.color = 'white';
+            } else {
+                validBtn.style.background = '#e2e8f0';
+                validBtn.style.color = '#1e293b';
+            }
+        }
+        
+        if (expiredBtn) {
+            if (activeFilter === 'expired') {
+                expiredBtn.style.background = 'linear-gradient(135deg, #3b82f6, #2563eb)';
+                expiredBtn.style.color = 'white';
+            } else {
+                expiredBtn.style.background = '#e2e8f0';
+                expiredBtn.style.color = '#1e293b';
+            }
+        }
+    };
+    
+    filterAll.addEventListener('click', () => {
+        currentCertFilter = 'all';
+        updateButtonStyle('all');
+        renderCertificates();
+    });
+    
+    filterValid.addEventListener('click', () => {
+        currentCertFilter = 'valid';
+        updateButtonStyle('valid');
+        renderCertificates();
+    });
+    
+    filterExpired.addEventListener('click', () => {
+        currentCertFilter = 'expired';
+        updateButtonStyle('expired');
+        renderCertificates();
+    });
+    
+    console.log("✅ فیلترهای گواهینامه تنظیم شدند");
+}
+
+
+
+// تنظیمات دکمه پشتیبانی
+const supportBtn = document.getElementById('supportBtn');
+const supportModal = document.getElementById('supportModal');
+const closeSupportModal = document.getElementById('closeSupportModal');
+
+if (supportBtn) {
+    supportBtn.addEventListener('click', function() {
+        supportModal.classList.toggle('active');
+    });
+}
+
+if (closeSupportModal) {
+    closeSupportModal.addEventListener('click', function() {
+        supportModal.classList.remove('active');
+    });
+}
+
+// بستن مودال با کلیک بیرون
+document.addEventListener('click', function(event) {
+    if (supportModal && !supportModal.contains(event.target) && !supportBtn.contains(event.target)) {
+        supportModal.classList.remove('active');
+    }
+});
+
+
+
+</script>
+</body>
+</html>
